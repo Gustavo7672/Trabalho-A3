@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Alunos {
     private static ArrayList<Alunos> lista = new ArrayList<>();
+
     private String nome;
     private long ra;
 

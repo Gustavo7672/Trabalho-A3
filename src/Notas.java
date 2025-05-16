@@ -1,12 +1,15 @@
+
 import java.util.ArrayList;
 
 public class Notas {
     private static ArrayList<Notas> nota = new ArrayList<>();
+
     private int notaA1;
     private int notaA2;
     private int notaA3;
     private int somaNota;
     private String status;
+
 
     public Notas(int notaA1, int notaA2, int notaA3, int somaNota, String status) {
         this.notaA1 = notaA1;
@@ -38,6 +41,7 @@ public class Notas {
     public static ArrayList<Notas> getNota() {
         return nota;
     }
+
 
     public int getNotaA1() {
         return notaA1;
@@ -81,4 +85,5 @@ public class Notas {
     public void setStatus(String status) {
         this.status = status;
     }
+
 }
