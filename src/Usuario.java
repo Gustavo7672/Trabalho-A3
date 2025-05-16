@@ -1,5 +1,4 @@
 public class Usuario {
-    // Atributos privados
     private String email;
     private String senha;
     private boolean cadastroValido;
@@ -24,6 +23,7 @@ public class Usuario {
             return false;
         }
     }
+  
     public String getEmail() {
         return email;
     }
@@ -38,9 +38,11 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+
     }
 
     public void setSenha(String senha) {
         this.senha = senha;
+
     }
 }
