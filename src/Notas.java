@@ -1,36 +1,47 @@
+
+import java.util.ArrayList;
+
 public class Notas {
-    // Atributos privados
+    private static ArrayList<Notas> nota = new ArrayList<>();
+
     private int notaA1;
     private int notaA2;
     private int notaA3;
     private int somaNota;
     private String status;
 
-    // Construtor
-    public Notas(int notaA1, int notaA2, int notaA3) {
-        
+
+    public Notas(int notaA1, int notaA2, int notaA3, int somaNota, String status) {
         this.notaA1 = notaA1;
         this.notaA2 = notaA2;
         this.notaA3 = notaA3;
-        
+        this.somaNota = somaNota;
+        this.status = status;
     }
 
-    // Método para calcular a soma das notas
     private void calcularSoma() {
-        somaNota = notaA1 + notaA2 + notaA3;
+        for (int i = 0; i < nota.size(); i++) {
+            somaNota = nota.get(i).notaA1 + nota.get(i).notaA2 + nota.get(i).notaA3;
+            nota.get(i).setSomaNota(somaNota);
+        }
     }
-
-    // Método para verificar aprovação
     private void calcularStatus() {
-        if (somaNota >= 70) {
-            status = "Aprovado";
-        } else {
-            status = "Reprovado";
+        for (int i = 0; i < nota.size(); i++) {
+            if (nota.get(i).somaNota >= 70) {
+                status = "Aprovado";
+                nota.get(i).setStatus(status);
+            } else {
+                status = "Reprovado";
+                nota.get(i).setStatus(status);
+            }
         }
     }
 
-    // Métodos getters
-    
+    public static ArrayList<Notas> getNota() {
+        return nota;
+    }
+
+
     public int getNotaA1() {
         return notaA1;
     }
@@ -51,8 +62,6 @@ public class Notas {
         return status;
     }
 
-    // Métodos setters
-    
     public void setNotaA1(int notaA1) {
         this.notaA1 = notaA1;
         
@@ -67,4 +76,13 @@ public class Notas {
         this.notaA3 = notaA3;
       
     }
+
+    public void setSomaNota(int somaNota) {
+        this.somaNota = somaNota;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
 }

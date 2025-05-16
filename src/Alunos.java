@@ -1,7 +1,8 @@
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Alunos {
+    private static ArrayList<Alunos> lista = new ArrayList<>();
+
     private String nome;
     private String ra;
 
@@ -22,41 +23,11 @@ public class Alunos {
         return "Aluno: " + nome + " | RA: " + ra;
     }
 
-    public static void breno123() {
-        Scanner scanner = new Scanner(System.in);
-        ArrayList<Alunos> lista = new ArrayList<>();
-
-        String continuar;
-        do {
-            System.out.print("Digite o nome do aluno: ");
-            String nome = scanner.nextLine();
-
-            String ra;
-            while (true) {
-                System.out.print("Digite o RA do aluno: ");
-                ra = scanner.nextLine();
-
+    public String validarInformacoes() {
                 if (ra.matches("\\d{10}")) {
-                    break;
+                    return "Aluno registrado com sucesso";
                 } else {
-                    System.out.println("RA inválido! Digite exatamente 10 números.");
+                    return "RA inválido! Digite exatamente 10 números.";
                 }
             }
-
-            Alunos aluno = new Alunos(nome, ra);
-            lista.add(aluno);
-
-            System.out.print("Deseja registrar outro aluno? (s/n): ");
-            continuar = scanner.nextLine().trim().toLowerCase();
-        } while (continuar.equals("s"));
-
-
-        System.out.println();
-        System.out.println("--- Alunos presentes na aula: ---");
-        for (Alunos aluno : lista) {
-            System.out.println(aluno);
-        }
-
-        scanner.close();
     }
-}
