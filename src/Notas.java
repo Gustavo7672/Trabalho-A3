@@ -16,13 +16,14 @@ public class Notas {
         this.status = status;
     }
 
-    private void calcularSoma() {
+    public void calcularSoma() {
         for (int i = 0; i < nota.size(); i++) {
             somaNota = nota.get(i).notaA1 + nota.get(i).notaA2 + nota.get(i).notaA3;
             nota.get(i).setSomaNota(somaNota);
+            System.out.println(nota.get(i).getSomaNota());
         }
     }
-    private void calcularStatus() {
+    public void calcularStatus() {
         for (int i = 0; i < nota.size(); i++) {
             if (nota.get(i).somaNota >= 70) {
                 status = "Aprovado";
