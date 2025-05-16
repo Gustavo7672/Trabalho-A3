@@ -4,19 +4,36 @@ public class Alunos {
     private static ArrayList<Alunos> lista = new ArrayList<>();
 
     private String nome;
-    private String ra;
+    private long ra;
 
-    public Alunos(String nome, String ra) {
+    public Alunos(String nome, long ra) {
         this.nome = nome;
         this.ra = ra;
+    }
+
+    public void cadastrarNaLista(String nome, Long ra){
+        Alunos a = new Alunos(nome, ra);
+        lista.add(a);
+    }
+
+    public static ArrayList<Alunos> getLista() {
+        return lista;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public String getRa() {
+    public Long getRa() {
         return ra;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setRa(long ra) {
+        this.ra = ra;
     }
 
     public String toString() {
@@ -24,7 +41,7 @@ public class Alunos {
     }
 
     public String validarInformacoes() {
-                if (ra.matches("\\d{10}")) {
+                if (String.valueOf(ra).length() == 10) {
                     return "Aluno registrado com sucesso";
                 } else {
                     return "RA inválido! Digite exatamente 10 números.";
