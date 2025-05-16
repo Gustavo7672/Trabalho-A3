@@ -19,6 +19,10 @@ public class Notas {
         this.status = status;
     }
 
+    public void adicionar(Notas notaa){
+        nota.add(notaa);
+    }
+
     public void calcularSoma() {
         for (int i = 0; i < nota.size(); i++) {
             somaNota = nota.get(i).notaA1 + nota.get(i).notaA2 + nota.get(i).notaA3;

@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class Sistema {
-    private int tentativas=1;
+    private int tentativas = 1;
     private String opcao;
     private Scanner imput = new Scanner(System.in);
 
@@ -11,7 +11,7 @@ public class Sistema {
         int comando = imput.nextInt();
         switch (comando) {
             case 1:
-                cadastrarListaDePresenca();
+                presente();
                 break;
             case 2:
                 cadastrarNota();
@@ -19,16 +19,13 @@ public class Sistema {
             case 3:
                 cadastrarAlunos();
                 break;
-            case 4:
-                verLista();
-                break;
             default:
                 System.out.println("Número incorreto, escolha entre os 4 números solicitados!");
         }
     }
 
     public void cadastrarProfessor() {
-        if (Usuario.getEmail() == null){
+        if (Usuario.getEmail() == null) {
             System.out.println("-------Cadastro-------");
             System.out.println("Digite o seu email para registro:");
             Usuario.setEmail(imput.nextLine());
@@ -38,7 +35,7 @@ public class Sistema {
             Usuario.validarSenha();
 
             login();
-    } else {
+        } else {
             login();
         }
     }
@@ -47,6 +44,7 @@ public class Sistema {
         do {
             Alunos aluno = new Alunos("", 0);
             System.out.println("Cadastro de alunos!!");
+            imput.nextLine();
             System.out.println("Nome do aluno:");
             aluno.setNome(imput.nextLine());
             System.out.println("Ra do aluno:");
@@ -60,10 +58,10 @@ public class Sistema {
 
     }
 
-    public void login(){
+    public void login() {
         do {
             System.out.println("Entre na sua conta:");
-            System.out.println("Você tem "+tentativas+" de 5:=");
+            System.out.println("Você tem " + tentativas + " de 5:=");
             System.out.println("Digite seu email:");
             Usuario.setEmailVerificar(imput.nextLine());
             System.out.println("Digite sua senha:");
@@ -72,22 +70,22 @@ public class Sistema {
             if (Usuario.getEmailVerificar().equals(Usuario.getEmail()) && Usuario.getSenhaVerificar().equals(Usuario.getSenha())
             ) {
                 System.out.println("Login efetuado com sucesso");
-            } else{
+            } else {
                 System.out.println("Email ou senha invalido");
             }
         } while (!Usuario.getEmailVerificar().equals(Usuario.getEmail()) || !Usuario.getSenhaVerificar().equals(Usuario.getSenha()));
 
 
-            menu();
+        menu();
     }
 
     public void cadastrarNota() {
-        Notas nota = new Notas(0, 0, 0,0 , "");
+        Notas nota = new Notas(0, 0, 0, 0, "");
         System.out.println("-------Sistema de notas-------");
-        for (int i = 0; i < Alunos.getLista().size();i++) {
-            if (Alunos.getLista().get(i).getNome()==null) {
+        for (int i = 0; i < Alunos.getLista().size(); i++) {
+            if (Alunos.getLista().get(i).getNome() == null) {
                 System.out.println("Lista vazia");
-            } else{
+            } else {
                 System.out.println(Alunos.getLista().get(i).getNome());
                 System.out.println("Digite a nota A1:");
                 nota.setNotaA1(imput.nextInt());
@@ -98,18 +96,21 @@ public class Sistema {
                 System.out.println("Digite a nota A3");
                 nota.setNotaA3(imput.nextInt());
                 imput.nextLine();
+                Notas notass = new Notas(nota.getNotaA1(), nota.getNotaA2(), nota.getNotaA3(), nota.getSomaNota(),nota.getStatus());
                 nota.calcularSoma();
-            }
-
+            nota.calcularStatus();
+            notass.adicionar(notass);
+                System.out.println(notass.getNotaA1() + notass.getNotaA2()+ notass.getNotaA3() +notass.getSomaNota()+notass.getStatus());
+        }
         }
     }
 
-    public void cadastrarListaDePresenca() {
-
+    public String presente() {
+        return "presente";
 
     }
 
-    public void verLista(){
-
+    public String ausente() {
+        return "ausente";
     }
 }
