@@ -1,27 +1,45 @@
 import java.util.ArrayList;
 
 public class ListaPresenca {
-
-    private static class Aluno {
-        private boolean presente;
+    private static String data;
+        private static String listarPresenca;
         private static ArrayList <ListaPresenca> presenca = new ArrayList<>();
 
-        public Aluno(boolean presente) {
-            this.presente = presente;
+    public ListaPresenca(String listarPresencaa, String dataa) {
+        listarPresenca = listarPresencaa;
+        data = dataa;
+    }
+
+    public String presente() {
+            return "presente";
         }
 
-        public boolean isPresente() {
-            return presente;
+        public String ausente() {
+            return "ausente";
         }
 
-        public void setPresente(boolean presente) {
-            this.presente = presente;
-        }
+    public static ArrayList<ListaPresenca> getPresenca() {
+        return presenca;
+    }
 
-        public void marcarPresenca() {
-            setPresente(true);
-        }
+    public void adicionarPresencaNaLista(ListaPresenca presencaa){
+            presenca.add(presencaa);
 
     }
 
+    public static String getListarPresenca() {
+        return listarPresenca;
+    }
+
+    public static void setListarPresenca(String listarPresencaa) {
+       listarPresenca = listarPresencaa;
+    }
+
+    public static String getData() {
+        return data;
+    }
+
+    public static void setData(String dataa) {
+        data = dataa;
+    }
 }
