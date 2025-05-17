@@ -11,13 +11,16 @@ public class Sistema {
         int comando = imput.nextInt();
         switch (comando) {
             case 1:
-                presente();
+                adicionarPresenca();
                 break;
             case 2:
                 cadastrarNota();
                 break;
             case 3:
                 cadastrarAlunos();
+                break;
+            case 4:
+                verLista();
                 break;
             default:
                 System.out.println("Número incorreto, escolha entre os 4 números solicitados!");
@@ -96,21 +99,36 @@ public class Sistema {
                 System.out.println("Digite a nota A3");
                 nota.setNotaA3(imput.nextInt());
                 imput.nextLine();
-                Notas notass = new Notas(nota.getNotaA1(), nota.getNotaA2(), nota.getNotaA3(), nota.getSomaNota(),nota.getStatus());
+                Notas notass = new Notas(nota.getNotaA1(), nota.getNotaA2(), nota.getNotaA3(), nota.getSomaNota(), nota.getStatus());
+                notass.adicionar(notass);
                 nota.calcularSoma();
-            nota.calcularStatus();
-            notass.adicionar(notass);
-                System.out.println(notass.getNotaA1() + notass.getNotaA2()+ notass.getNotaA3() +notass.getSomaNota()+notass.getStatus());
-        }
+                nota.calcularStatus();
+                System.out.println("NotaA1: " + notass.getNotaA1() + " NotaA2: " + notass.getNotaA2() + " NotaA3: " + notass.getNotaA3() + " Soma total: " + notass.getSomaNota() + " Status: " + notass.getStatus());
+                menu();
+            }
         }
     }
 
-    public String presente() {
-        return "presente";
-
+    public void adicionarPresenca() {
+        for (Alunos aluno : Alunos.getLista()) {
+            System.out.println(aluno);
+            imput.nextLine();
+            System.out.println("Aluno estã presente?");
+            ListaPresenca.setListarPresenca(imput.nextLine());
+            System.out.println("Data da presença:");
+            ListaPresenca.setData(imput.nextLine());
+            ListaPresenca p = new ListaPresenca(ListaPresenca.getListarPresenca(), ListaPresenca.getData());
+            p.adicionarPresencaNaLista(p);
+            menu();
+        }
     }
 
-    public String ausente() {
-        return "ausente";
+    public void verLista() {
+        for (int i = 0; i < Alunos.getLista().size(); i++) {
+            System.out.print(Alunos.getLista().get(i) + " |");
+            System.out.print(Notas.getNota().get(i) + " |");
+            System.out.print(ListaPresenca.getPresenca().get(i));
+            menu();
+        }
     }
 }
