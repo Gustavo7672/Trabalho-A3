@@ -1,4 +1,6 @@
-public class Usuario {
+package br.com.projetoa3.modelo;
+
+public class Professor {
     private static String emailVerificar;
     private static String senhaVerificar;
     private static String email;
@@ -6,7 +8,7 @@ public class Usuario {
     private static boolean emailValido = true;
     private static boolean senhaValido = true;
 
-    public Usuario(String email, String senha) {
+    public Professor(String email, String senha) {
         this.email = email;
         this.senha = senha;
     }
@@ -16,7 +18,7 @@ public class Usuario {
     }
 
     public static void setEmailVerificar(String emailVerificar) {
-        Usuario.emailVerificar = emailVerificar;
+        Professor.emailVerificar = emailVerificar;
     }
 
     public static String getSenhaVerificar() {
@@ -24,7 +26,7 @@ public class Usuario {
     }
 
     public static void setSenhaVerificar(String senhaVerificar) {
-        Usuario.senhaVerificar = senhaVerificar;
+        Professor.senhaVerificar = senhaVerificar;
     }
 
     public static void validarEmail() {

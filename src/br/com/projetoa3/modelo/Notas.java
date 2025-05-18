@@ -1,3 +1,4 @@
+package br.com.projetoa3.modelo;
 
 import java.util.ArrayList;
 
