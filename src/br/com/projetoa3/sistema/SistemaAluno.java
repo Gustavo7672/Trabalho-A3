@@ -35,14 +35,15 @@ public class SistemaAluno {
     }
 
     public static void adicionarPresenca() {
+        ListaPresenca a = new ListaPresenca("","");
         for (Alunos aluno : Alunos.getLista()) {
             System.out.println(aluno);
             SistemaMenu.getImput().nextLine();
             System.out.println("Aluno estã presente?");
-            ListaPresenca.setListarPresenca(SistemaMenu.getImput().nextLine());
+            a.setListarPresenca(SistemaMenu.getImput().nextLine());
             System.out.println("Data da presença:");
-            ListaPresenca.setData(SistemaMenu.getImput().nextLine());
-            ListaPresenca p = new ListaPresenca(ListaPresenca.getListarPresenca(), ListaPresenca.getData());
+            a.setData(SistemaMenu.getImput().nextLine());
+            ListaPresenca p = new ListaPresenca(a.getListarPresenca(), a.getData());
             p.adicionarPresencaNaLista(p);
 
         }
