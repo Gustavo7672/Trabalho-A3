@@ -17,20 +17,22 @@ public class SistemaMenu {
 
     public static void menu() {
         System.out.println("Sistema lista de presença e notas");
-        System.out.println("Deseja adicionar presença, notas, alunos ou ver a lista 1/2/3/4");
+        System.out.println("Deseja cadastrar Alunos, Notas, Presença, ver a lista ou sair. 1/2/3/4/5");
         int comando = imput.nextInt();
         switch (comando) {
             case 1:
-                SistemaAluno.adicionarPresenca();
+                SistemaAluno.cadastrarAlunos();
                 break;
             case 2:
                 SistemaAluno.cadastrarNota();
                 break;
             case 3:
-                SistemaAluno.cadastrarAlunos();
+                SistemaAluno.adicionarPresenca();
                 break;
             case 4:
                 verLista();
+                break;
+            case 5:
                 break;
             default:
                 System.out.println("Número incorreto, escolha entre os 4 números solicitados!");
@@ -60,10 +62,14 @@ public class SistemaMenu {
 
     public static void verLista() {
         for (int i = 0; i < Alunos.getLista().size(); i++) {
-            System.out.print(Alunos.getLista().get(i) + " |");
-            System.out.print(Notas.getNota().get(i) + " |");
-            System.out.print(ListaPresenca.getPresenca().get(i));
-
+            System.out.println(Alunos.getLista().get(i) + " |");
+            System.out.println("Nota A1: "+Notas.getNota().get(i).getNotaA1() +
+                    " |"+" Nota A2: " +Notas.getNota().get(i).getNotaA2() +
+                    " |"+" Nota A3: "+Notas.getNota().get(i).getNotaA3() +
+                    " |"+" Soma: "+Notas.getNota().get(i).getSomaNota() +
+                    " |"+" Status: "+Notas.getNota().get(i).getStatus()+" ");
+            System.out.println("Presença: "+ ListaPresenca.getPresenca().get(i).getListarPresenca()+" |"+" Data: "+ListaPresenca.getPresenca().get(i).getData());
+            System.out.println("-------------------------------");
         }
         menu();
     }

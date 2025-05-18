@@ -11,15 +11,6 @@ public class ListaPresenca {
         listarPresenca = listarPresencaa;
         data = dataa;
     }
-
-    public String presente() {
-            return "presente";
-        }
-
-        public String ausente() {
-            return "ausente";
-        }
-
     public static ArrayList<ListaPresenca> getPresenca() {
         return presenca;
     }
@@ -29,19 +20,19 @@ public class ListaPresenca {
 
     }
 
-    public static String getListarPresenca() {
+    public String getListarPresenca() {
         return listarPresenca;
     }
 
-    public static void setListarPresenca(String listarPresencaa) {
+    public void setListarPresenca(String listarPresencaa) {
        listarPresenca = listarPresencaa;
     }
 
-    public static String getData() {
+    public String getData() {
         return data;
     }
 
-    public static void setData(String dataa) {
+    public void setData(String dataa) {
         data = dataa;
     }
 }
