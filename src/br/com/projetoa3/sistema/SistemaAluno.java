@@ -16,14 +16,14 @@ public class SistemaAluno {
             } else {
                 System.out.println(Alunos.getLista().get(i).getNome());
                 System.out.println("Digite a nota A1:");
-                nota.setNotaA1(SistemaMenu.getImput().nextInt());
-                SistemaMenu.getImput().nextLine();
+                nota.setNotaA1(SistemaMaster.getImput().nextInt());
+                SistemaMaster.getImput().nextLine();
                 System.out.println("Digite a nota A2:");
-                nota.setNotaA2(SistemaMenu.getImput().nextInt());
-                SistemaMenu.getImput().nextLine();
+                nota.setNotaA2(SistemaMaster.getImput().nextInt());
+                SistemaMaster.getImput().nextLine();
                 System.out.println("Digite a nota A3");
-                nota.setNotaA3(SistemaMenu.getImput().nextInt());
-                SistemaMenu.getImput().nextLine();
+                nota.setNotaA3(SistemaMaster.getImput().nextInt());
+                SistemaMaster.getImput().nextLine();
                 Notas notass = new Notas(nota.getNotaA1(), nota.getNotaA2(), nota.getNotaA3(), nota.getSomaNota(), nota.getStatus());
                 notass.adicionar(notass);
                 nota.calcularSoma();
@@ -31,39 +31,39 @@ public class SistemaAluno {
                 System.out.println("NotaA1: " + notass.getNotaA1() + " NotaA2: " + notass.getNotaA2() + " NotaA3: " + notass.getNotaA3() + " Soma total: " + notass.getSomaNota() + " Status: " + notass.getStatus());
             }
         }
-        SistemaMenu.menu();
+        SistemaMaster.menu();
     }
 
     public static void adicionarPresenca() {
         ListaPresenca a = new ListaPresenca("","");
         for (Alunos aluno : Alunos.getLista()) {
             System.out.println(aluno);
-            SistemaMenu.getImput().nextLine();
+            SistemaMaster.getImput().nextLine();
             System.out.println("Aluno estã presente?");
-            a.setListarPresenca(SistemaMenu.getImput().nextLine());
+            a.setListarPresenca(SistemaMaster.getImput().nextLine());
             System.out.println("Data da presença:");
-            a.setData(SistemaMenu.getImput().nextLine());
+            a.setData(SistemaMaster.getImput().nextLine());
             ListaPresenca p = new ListaPresenca(a.getListarPresenca(), a.getData());
             p.adicionarPresencaNaLista(p);
 
         }
-        SistemaMenu.menu();
+        SistemaMaster.menu();
     }
 
     public static void cadastrarAlunos() {
         do {
             Alunos aluno = new Alunos("", 0);
             System.out.println("Cadastro de alunos!!");
-            SistemaMenu.getImput().nextLine();
+            SistemaMaster.getImput().nextLine();
             System.out.println("Nome do aluno:");
-            aluno.setNome(SistemaMenu.getImput().nextLine());
+            aluno.setNome(SistemaMaster.getImput().nextLine());
             System.out.println("Ra do aluno:");
-            aluno.setRa(SistemaMenu.getImput().nextLong());
-            SistemaMenu.getImput().nextLine();
+            aluno.setRa(SistemaMaster.getImput().nextLong());
+            SistemaMaster.getImput().nextLine();
             aluno.cadastrarNaLista(aluno.getNome(), aluno.getRa());
             System.out.println("Desejar continuar? s/n");
-            opcao = SistemaMenu.getImput().nextLine();
+            opcao = SistemaMaster.getImput().nextLine();
         } while (opcao.equalsIgnoreCase("s"));
-        SistemaMenu.menu();
+        SistemaMaster.menu();
     }
 }
