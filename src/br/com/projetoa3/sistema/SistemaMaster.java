@@ -7,7 +7,7 @@ import br.com.projetoa3.modelo.ListaPresenca;
 
 import java.util.Scanner;
 
-public class SistemaMenu {
+public class SistemaMaster {
     private static int tentativas = 1;
     private static Scanner imput = new Scanner(System.in);
 
@@ -56,8 +56,12 @@ public class SistemaMenu {
             }
         } while (!Professor.getEmailVerificar().equals(Professor.getEmail()) || !Professor.getSenhaVerificar().equals(Professor.getSenha()));
 
+    if (Alunos.getLista().isEmpty()) {
+    SistemaAluno.cadastrarAlunos();
 
+    }else {
         menu();
+    }
     }
 
     public static void verLista() {
