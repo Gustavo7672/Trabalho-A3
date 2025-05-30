@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox prefHeight="558.0" prefWidth="779.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.projetoa3.gui.controllers.TelaCadastroController">
+   <children>
+      <VBox prefHeight="511.0" prefWidth="489.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10; -fx-border-width: 2;">
+         <HBox.margin>
+            <Insets bottom="15.0" left="15.0" top="15.0" />
+         </HBox.margin>
+         <children>
+            <VBox prefHeight="602.0" prefWidth="367.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 10; -fx-border-color: #002244;">
+               <children>
+                  <Label prefHeight="42.0" prefWidth="350.0" style="-fx-padding: 10; -fx-font-weight: bold;" text="Nome">
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cadastrarNomeId" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label prefHeight="42.0" prefWidth="350.0" style="-fx-padding: 10; -fx-font-weight: bold;" text="RA">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cadastrarRAId1" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label prefHeight="42.0" prefWidth="350.0" style="-fx-padding: 10; -fx-font-weight: bold;" text="Turma">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="cadastrarTurmaId11" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="botaoConfirmarCadastro" contentDisplay="TOP" mnemonicParsing="false" onAction="#confirmarCadastro" prefHeight="35.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-text-fill: white; -fx-background-color: #2196F3; -fx-border-radius: 15; -fx-border-color: #002244;" text="Cadastrar">
+                     <VBox.margin>
+                        <Insets left="130.0" top="45.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+      <VBox prefHeight="534.0" prefWidth="402.0" style="-fx-background-radius: 15; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2; -fx-padding: 10;">
+         <HBox.margin>
+            <Insets bottom="15.0" left="25.0" right="15.0" top="15.0" />
+         </HBox.margin>
+         <children>
+            <VBox prefHeight="533.0" prefWidth="301.0" style="-fx-padding: 10; -fx-background-color: white; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-radius: 15;">
+               <children>
+                  <Label prefHeight="42.0" prefWidth="350.0" style="-fx-padding: 10; -fx-font-weight: bold;" text="Nota A1">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="30.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="cadastrarNotaA1I" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label prefHeight="42.0" prefWidth="350.0" style="-fx-padding: 10; -fx-font-weight: bold;" text="Nota A2">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="cadastrarNotaA2" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Label prefHeight="42.0" prefWidth="350.0" style="-fx-padding: 10; -fx-font-weight: bold;" text="Nota A3">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="cadastrarNotaA3" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</HBox>
