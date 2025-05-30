@@ -61,6 +61,7 @@ public class SistemaAluno {
             aluno.setRa(SistemaMaster.getImput().nextLong());
             SistemaMaster.getImput().nextLine();
             aluno.cadastrarNaLista(aluno.getNome(), aluno.getRa());
+            aluno.validarInformacoes();
             System.out.println("Desejar continuar? s/n");
             opcao = SistemaMaster.getImput().nextLine();
         } while (opcao.equalsIgnoreCase("s"));

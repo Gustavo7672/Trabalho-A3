@@ -30,7 +30,11 @@ public class SistemaMaster {
                 SistemaAluno.adicionarPresenca();
                 break;
             case 4:
-                verLista();
+                if(Notas.getNota().isEmpty() && ListaPresenca.getPresenca().isEmpty()){
+                    System.out.println("Listas de notas ou de presença tá vazia");
+                } else {
+                    verLista();
+                }
                 break;
             case 5:
                 break;

@@ -1,6 +1,7 @@
 package br.com.projetoa3.modelo;
 
 import java.util.ArrayList;
+import br.com.projetoa3.sistema.SistemaAluno;
 
 public class Alunos {
     private static ArrayList<Alunos> lista = new ArrayList<>();
@@ -42,11 +43,12 @@ public class Alunos {
         return "Aluno: " + nome + " | RA: " + ra;
     }
 
-    public String validarInformacoes() {
+    public void validarInformacoes() {
                 if (String.valueOf(ra).length() == 10) {
-                    return "Aluno registrado com sucesso";
+                    System.out.println( "Aluno registrado com sucesso");
                 } else {
-                    return "RA inválido! Digite exatamente 10 números.";
+                    System.out.println( "RA inválido! Digite exatamente 10 números.");
+                    SistemaAluno.cadastrarAlunos();
                 }
             }
     }
