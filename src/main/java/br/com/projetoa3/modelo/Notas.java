@@ -53,29 +53,4 @@ public class Notas {
     public String getStatus() {
         return status;
     }
-
-    public void setNotaA1(int notaA1) {
-        this.notaA1 = notaA1;
-        
-    }
-
-    public void setNotaA2(int notaA2) {
-        this.notaA2 = notaA2;
-        
-    }
-
-    public void setNotaA3(int notaA3) {
-        this.notaA3 = notaA3;
-      
-    }
-
-    public void setSomaNota(int somaNota) {
-        this.somaNota = somaNota;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
 }
-

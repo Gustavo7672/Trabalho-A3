@@ -4,18 +4,9 @@ import br.com.projetoa3.modelo.Professor;
 
 public class SistemaProfessor {
     public static void cadastrarProfessor() {
-        if (Professor.getEmail() == null) {
-            System.out.println("-------Cadastro-------");
-            System.out.println("Digite o seu email para registro:");
-            Professor.setEmail(SistemaMaster.getImput().nextLine());
+        if (Professor.getEmail() != null) {
             Professor.validarEmail();
-            System.out.println("Digite a senha para registro:");
-            Professor.setSenha(SistemaMaster.getImput().nextLine());
             Professor.validarSenha();
-
-            SistemaMaster.login();
-        } else {
-            SistemaMaster.login();
         }
     }
 

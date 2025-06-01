@@ -1,12 +1,11 @@
 package br.com.projetoa3.modelo;
 
-import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
-import br.com.projetoa3.sistema.SistemaAluno;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
 public class Alunos {
     private static Map<Long, Alunos> lista = new HashMap<>();
@@ -14,11 +13,18 @@ public class Alunos {
 
     private String nome;
     private long ra;
+    private String turma;
 
-    public Alunos(String nome, long ra) {
+    public Alunos(String nome, long ra, String turma) {
         this.nome = nome;
         this.ra = ra;
+        this.turma = turma;
     }
+
+    public String getTurma() {
+        return turma;
+    }
+
 
     public static Map<Long, Alunos> getLista() {
         return lista;
@@ -57,14 +63,8 @@ public class Alunos {
     }
 
     public String toString() {
-        return "Aluno: " + nome + " | RA: " + ra;
+        return "Aluno: " + nome + " | RA: " + ra + " | Turma: " + turma;
     }
 
-    public void validarInformacoes() {
-                if (String.valueOf(ra).length() == 10) {
-                    System.out.println( "Aluno registrado com sucesso");
-                } else {
-                    System.out.println( "RA inválido! Digite exatamente 10 números.");
-                }
-            }
-    }
+
+}

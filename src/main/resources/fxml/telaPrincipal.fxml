@@ -21,9 +21,9 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Salvar " />
                   <MenuItem mnemonicParsing="false" text="Exportar Tabela" />
-                  <Menu mnemonicParsing="false" text="Trocar de turma">
+                  <Menu fx:id="trocarTurmaMenu" mnemonicParsing="false" onAction="#mostrarTurmas" text="Trocar de turma">
                      <items>
-                        <MenuItem mnemonicParsing="false" text="Trocar de Turma" />
+                        <MenuItem fx:id="turma1" mnemonicParsing="false" text="Trocar de Turma" />
                      </items>
                   </Menu>
             </items>
@@ -32,6 +32,7 @@
             <items>
               <MenuItem fx:id="CadastrarAlunos" mnemonicParsing="false" onAction="#abrirTelaCadastro" text="Adicionar Alunos" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirTelaNotas" text="Adicionar Notas" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTelaRemoverAluno" text="Remover Aluno" />
             </items>
           </Menu>
         </menus>
