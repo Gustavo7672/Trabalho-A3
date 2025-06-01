@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-padding: 10;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.projetoa3.gui.controllers.RemoverAlunoControllers">
+   <children>
+      <HBox prefHeight="600.0" prefWidth="816.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-padding: 10; -fx-border-radius: 10; -fx-border-color: #002244; -fx-border-width: 2;">
+         <children>
+            <VBox prefHeight="556.0" prefWidth="783.0" style="-fx-background-color: white;">
+               <children>
+                  <Label prefHeight="56.0" prefWidth="294.0" text="Digite o RA para remover:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="35.0" top="65.0" />
+                     </VBox.margin>
+                  </Label>
+                  <TextField fx:id="removerRA" prefHeight="32.0" prefWidth="756.0" style="-fx-padding: 10; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244;">
+                     <VBox.margin>
+                        <Insets left="35.0" right="35.0" top="20.0" />
+                     </VBox.margin>
+                  </TextField>
+                  <Button fx:id="comfirmarRemorcao" mnemonicParsing="false" prefHeight="37.0" prefWidth="70.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-padding: 10; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-radius: 15;" text="Apagar">
+                     <VBox.margin>
+                        <Insets left="240.0" top="50.0" />
+                     </VBox.margin>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</HBox>
