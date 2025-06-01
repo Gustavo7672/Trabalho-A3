@@ -29,6 +29,12 @@ public class TelaPrincipalController implements Initializable {
     private Stage mainStage;
 
     @FXML
+    private Menu trocarTurmaMenu;
+
+    @FXML
+    private MenuItem turma1;
+
+    @FXML
     private ListView<String> listaNotasId;
 
     @FXML
@@ -166,5 +172,43 @@ public class TelaPrincipalController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
-}
+
+    @FXML
+    public void abrirTelaRemoverAluno() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/telaRemoverAluno.fxml"));
+        Parent root = loader.load();
+        RemoverAlunoControllers controller = loader.getController();
+        Stage stage = new Stage();
+        stage.setTitle("Remover Aluno");
+        stage.setScene(new Scene(root, 600, 400));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(mainStage);
+        stage.setResizable(false);
+        stage.showAndWait();
+    }
+    @FXML
+    private void filtrarAlunosPorTurma(String turma) {
+        ObservableList<String> alunosFiltrados = FXCollections.observableArrayList();
+        for (Alunos aluno : Alunos.getListaObservable()) {
+            if (aluno.getTurma().equals(turma)) {
+                alunosFiltrados.add(aluno.toString());
+            }
+        }
+        listViewId.setItems(alunosFiltrados);
+    }
+    @FXML
+        public void mostrarTurmas() {
+            trocarTurmaMenu.getItems().clear();
+            List<String> turmas = new ArrayList<>(Alunos.getListaObservable().stream()
+                    .map(Alunos::getTurma)
+                    .distinct()
+                    .toList());
+
+            for (String turma : turmas) {
+                MenuItem item = new MenuItem(turma);
+                item.setOnAction(event -> filtrarAlunosPorTurma(turma));
+                trocarTurmaMenu.getItems().add(item);
+            }
+            }
+        }
 

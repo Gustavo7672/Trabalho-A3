@@ -2,24 +2,12 @@ package br.com.projetoa3.gui.controllers;
 
 import br.com.projetoa3.modelo.Alunos;
 import br.com.projetoa3.modelo.Notas;
-import br.com.projetoa3.modelo.Professor;
-import br.com.projetoa3.sistema.SistemaAluno;
-import javafx.beans.property.BooleanProperty;
-import javafx.beans.property.SimpleBooleanProperty;
-import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.*;
-import javafx.scene.image.ImageView;
 
 import java.io.IOException;
 import java.net.URL;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.ResourceBundle;
 
 public class TelaCadastroController implements Initializable {
@@ -62,21 +50,36 @@ public class TelaCadastroController implements Initializable {
         notaA3 = cadastrarNotaA3.getText();
 
         Long raLong = Long.parseLong(ra);
-        Integer intNotaA1 = Integer.parseInt(notaA1);
-        Integer intNotaA2 = Integer.parseInt(notaA2);
-        Integer intNotaA3 = Integer.parseInt(notaA3);
-        Alunos.adicionarAluno(new Alunos(nome, raLong));
-        Notas notass = new Notas(intNotaA1, intNotaA2, intNotaA3);
-        Notas.adicionarNota(raLong, notass);
+
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Cadastro de Aluno");
         alert.setHeaderText("Confirmação de Cadastro");
-
-        if (nome.isEmpty() || ra.isEmpty() || turma.isEmpty()) {
+        if (nome.isEmpty() || ra.isEmpty() || turma.isEmpty()|| ra.length() !=10 ) {
             alert.setContentText("Por favor, preencha todos os campos.");
             alert.showAndWait();
             return;
         }
+        Integer intNotaA1, intNotaA2, intNotaA3;
+
+        try {
+            intNotaA1 = Integer.parseInt(notaA1);
+            intNotaA2 = Integer.parseInt(notaA2);
+            intNotaA3 = Integer.parseInt(notaA3);
+        } catch (NumberFormatException e) {
+            alert.setContentText("Notas devem ser números inteiros.");
+            alert.showAndWait();
+            return;
+        }
+
+        if (intNotaA1 < 0 || intNotaA2 < 0 || intNotaA3 < 0 || intNotaA1 > 30 || intNotaA2 > 30 || intNotaA3 > 40) {
+            alert.setContentText("Notas fora do limite permitido.");
+            alert.showAndWait();
+            return;
+        }
+        Alunos.adicionarAluno(new Alunos(nome, raLong, turma));
+        Notas notass = new Notas(intNotaA1, intNotaA2, intNotaA3);
+        Notas.adicionarNota(raLong, notass);
+
         alert.setContentText("Aluno cadastrado com sucesso!\nNome: " + nome + "\nRA: " + ra + "\nTurma: " + turma);
         alert.showAndWait();
     }
