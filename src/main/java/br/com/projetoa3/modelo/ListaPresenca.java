@@ -1,23 +1,23 @@
 package br.com.projetoa3.modelo;
 
+import javafx.beans.property.BooleanProperty;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ListaPresenca {
     private static String data;
         private static String listarPresenca;
-        private static ArrayList <ListaPresenca> presenca = new ArrayList<>();
-
+        private static Map<LocalDate, Map<Long, BooleanProperty>> presencas = new HashMap<>();
     public ListaPresenca(String listarPresencaa, String dataa) {
         listarPresenca = listarPresencaa;
         data = dataa;
     }
-    public static ArrayList<ListaPresenca> getPresenca() {
-        return presenca;
-    }
 
-    public void adicionarPresencaNaLista(ListaPresenca presencaa){
-            presenca.add(presencaa);
-
+    public static Map<LocalDate, Map<Long, BooleanProperty>> getPresencas() {
+        return presencas;
     }
 
     public String getListarPresenca() {

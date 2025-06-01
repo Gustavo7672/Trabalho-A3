@@ -31,7 +31,7 @@
           <Menu mnemonicParsing="false" text="Edit">
             <items>
               <MenuItem fx:id="CadastrarAlunos" mnemonicParsing="false" onAction="#abrirTelaCadastro" text="Adicionar Alunos" />
-                  <MenuItem mnemonicParsing="false" text="Adicionar Notas" />
+                  <MenuItem mnemonicParsing="false" onAction="#abrirTelaNotas" text="Adicionar Notas" />
             </items>
           </Menu>
         </menus>

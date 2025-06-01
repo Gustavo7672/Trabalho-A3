@@ -1,9 +1,11 @@
 package br.com.projetoa3.modelo;
 
 import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 public class Notas {
-    private static ArrayList<Notas> nota = new ArrayList<>();
+    private static Map<Long, Notas> notasPorAluno = new HashMap<>();
 
     private int notaA1;
     private int notaA2;
@@ -12,41 +14,25 @@ public class Notas {
     private String status;
 
 
-    public Notas(int notaA1, int notaA2, int notaA3, int somaNota, String status) {
+    public Notas(int notaA1, int notaA2, int notaA3) {
         this.notaA1 = notaA1;
         this.notaA2 = notaA2;
         this.notaA3 = notaA3;
-        this.somaNota = somaNota;
-        this.status = status;
+        this.somaNota = notaA1 + notaA2 + notaA3;
+        this.status = (somaNota >= 70) ? "Aprovado" : "Reprovado";
     }
 
-    public void adicionar(Notas notaa){
-        nota.add(notaa);
+    public static void adicionarNota(Long ra, Notas nota) {
+        notasPorAluno.put(ra, nota);
     }
 
-    public void calcularSoma() {
-        for (int i = 0; i < nota.size(); i++) {
-            somaNota = nota.get(i).notaA1 + nota.get(i).notaA2 + nota.get(i).notaA3;
-            nota.get(i).setSomaNota(somaNota);
-            System.out.println(nota.get(i).getSomaNota());
-        }
-    }
-    public void calcularStatus() {
-        for (int i = 0; i < nota.size(); i++) {
-            if (nota.get(i).somaNota >= 70) {
-                status = "Aprovado";
-                nota.get(i).setStatus(status);
-            } else {
-                status = "Reprovado";
-                nota.get(i).setStatus(status);
-            }
-        }
+    public static Notas getNotaPorAluno(Long ra) {
+        return notasPorAluno.get(ra);
     }
 
-    public static ArrayList<Notas> getNota() {
-        return nota;
+    public static Map<Long, Notas> getNotasPorAluno() {
+        return notasPorAluno;
     }
-
 
     public int getNotaA1() {
         return notaA1;
@@ -92,3 +78,4 @@ public class Notas {
     }
 
 }
+
