@@ -21,7 +21,7 @@ public class SistemaMaster {
         int comando = imput.nextInt();
         switch (comando) {
             case 1:
-                SistemaAluno.cadastrarAlunos();
+                //istemaAluno.cadastrarAlunos();
                 break;
             case 2:
                 SistemaAluno.cadastrarNota();
@@ -30,11 +30,7 @@ public class SistemaMaster {
                 SistemaAluno.adicionarPresenca();
                 break;
             case 4:
-                if(Notas.getNota().isEmpty() && ListaPresenca.getPresenca().isEmpty()){
                     System.out.println("Listas de notas ou de presença tá vazia");
-                } else {
-                    verLista();
-                }
                 break;
             case 5:
                 break;
@@ -61,14 +57,13 @@ public class SistemaMaster {
         } while (!Professor.getEmailVerificar().equals(Professor.getEmail()) || !Professor.getSenhaVerificar().equals(Professor.getSenha()));
 
     if (Alunos.getLista().isEmpty()) {
-    SistemaAluno.cadastrarAlunos();
 
     }else {
         menu();
     }
     }
 
-    public static void verLista() {
+    /*public static void verLista() {
         for (int i = 0; i < Alunos.getLista().size(); i++) {
             System.out.println(Alunos.getLista().get(i) + " |");
             System.out.println("Nota A1: "+Notas.getNota().get(i).getNotaA1() +
@@ -80,5 +75,5 @@ public class SistemaMaster {
             System.out.println("-------------------------------");
         }
         menu();
-    }
+    }*/
 }

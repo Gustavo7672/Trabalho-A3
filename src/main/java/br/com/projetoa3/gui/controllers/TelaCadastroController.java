@@ -1,6 +1,9 @@
 package br.com.projetoa3.gui.controllers;
 
+import br.com.projetoa3.modelo.Alunos;
+import br.com.projetoa3.modelo.Notas;
 import br.com.projetoa3.modelo.Professor;
+import br.com.projetoa3.sistema.SistemaAluno;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -18,8 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
-
-import static br.com.projetoa3.gui.controllers.TelaPrincipalController.listaNotas;
 
 public class TelaCadastroController implements Initializable {
 
@@ -53,8 +54,21 @@ public class TelaCadastroController implements Initializable {
     }
     @FXML
     private void confirmarCadastro() throws IOException {
+        nome = cadastrarNomeId.getText();
+        ra = cadastrarRAId1.getText();
+        turma = cadastrarTurmaId11.getText();
+        notaA1 = cadastrarNotaA1I.getText();
+        notaA2 = cadastrarNotaA2.getText();
+        notaA3 = cadastrarNotaA3.getText();
 
-     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Long raLong = Long.parseLong(ra);
+        Integer intNotaA1 = Integer.parseInt(notaA1);
+        Integer intNotaA2 = Integer.parseInt(notaA2);
+        Integer intNotaA3 = Integer.parseInt(notaA3);
+        Alunos.adicionarAluno(new Alunos(nome, raLong));
+        Notas notass = new Notas(intNotaA1, intNotaA2, intNotaA3);
+        Notas.adicionarNota(raLong, notass);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Cadastro de Aluno");
         alert.setHeaderText("Confirmação de Cadastro");
 
