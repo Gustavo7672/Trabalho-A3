@@ -1,11 +1,16 @@
 package br.com.projetoa3.modelo;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 
 public class Notas {
     private static Map<Long, Notas> notasPorAluno = new HashMap<>();
+    private static ObservableList<Notas> notasObservable = FXCollections.observableArrayList();
+
 
     private int notaA1;
     private int notaA2;
@@ -22,7 +27,16 @@ public class Notas {
         this.status = (somaNota >= 70) ? "Aprovado" : "Reprovado";
     }
 
+    public static ObservableList<Notas> getNotasObservable() {
+        return notasObservable;
+    }
+
+    public static void setNotasObservable(ObservableList<Notas> notasObservable) {
+        Notas.notasObservable = notasObservable;
+    }
+
     public static void adicionarNota(Long ra, Notas nota) {
+        notasObservable.add(nota);
         notasPorAluno.put(ra, nota);
     }
 
@@ -52,5 +66,15 @@ public class Notas {
 
     public String getStatus() {
         return status;
+    }
+
+    public String toString() {
+        return "Notas{" +
+                "notaA1=" + notaA1 +
+                ", notaA2=" + notaA2 +
+                ", notaA3=" + notaA3 +
+                ", somaNota=" + somaNota +
+                ", status='" + status + '\'' +
+                '}';
     }
 }

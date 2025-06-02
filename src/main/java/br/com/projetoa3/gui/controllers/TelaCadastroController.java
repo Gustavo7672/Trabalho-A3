@@ -6,18 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class TelaCadastroController implements Initializable {
 
-    String nome;
-    String ra;
-    String turma;
-    String notaA1;
-    String notaA2;
-    String notaA3;
     @FXML
     private TextField cadastrarNomeId;
 
@@ -42,19 +37,14 @@ public class TelaCadastroController implements Initializable {
     }
     @FXML
     private void confirmarCadastro() throws IOException {
-        nome = cadastrarNomeId.getText();
-        ra = cadastrarRAId1.getText();
-        turma = cadastrarTurmaId11.getText();
-        notaA1 = cadastrarNotaA1I.getText();
-        notaA2 = cadastrarNotaA2.getText();
-        notaA3 = cadastrarNotaA3.getText();
 
-        Long raLong = Long.parseLong(ra);
+
+        Long raLong = Long.parseLong(cadastrarRAId1.getText().trim());
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Cadastro de Aluno");
         alert.setHeaderText("Confirmação de Cadastro");
-        if (nome.isEmpty() || ra.isEmpty() || turma.isEmpty()|| ra.length() !=10 ) {
+        if (cadastrarNomeId.getText().isEmpty() || cadastrarRAId1.getText().isEmpty() || cadastrarTurmaId11.getText().isEmpty()|| cadastrarRAId1.getText().length() !=10 ) {
             alert.setContentText("Por favor, preencha todos os campos.");
             alert.showAndWait();
             return;
@@ -62,9 +52,9 @@ public class TelaCadastroController implements Initializable {
         Integer intNotaA1, intNotaA2, intNotaA3;
 
         try {
-            intNotaA1 = Integer.parseInt(notaA1);
-            intNotaA2 = Integer.parseInt(notaA2);
-            intNotaA3 = Integer.parseInt(notaA3);
+            intNotaA1 = Integer.parseInt(cadastrarNotaA1I.getText().trim());
+            intNotaA2 = Integer.parseInt(cadastrarNotaA2.getText().trim());
+            intNotaA3 = Integer.parseInt(cadastrarNotaA3.getText().trim());
         } catch (NumberFormatException e) {
             alert.setContentText("Notas devem ser números inteiros.");
             alert.showAndWait();
@@ -76,11 +66,12 @@ public class TelaCadastroController implements Initializable {
             alert.showAndWait();
             return;
         }
-        Alunos.adicionarAluno(new Alunos(nome, raLong, turma));
+        Alunos.adicionarAluno(new Alunos(cadastrarNomeId.getText().trim(), raLong, cadastrarTurmaId11.getText().trim()));
         Notas notass = new Notas(intNotaA1, intNotaA2, intNotaA3);
         Notas.adicionarNota(raLong, notass);
 
-        alert.setContentText("Aluno cadastrado com sucesso!\nNome: " + nome + "\nRA: " + ra + "\nTurma: " + turma);
+        alert.setContentText("Aluno cadastrado com sucesso!\nNome: " + cadastrarNomeId.getText() + "\nRA: " + cadastrarRAId1.getText() + "\nTurma: " + cadastrarTurmaId11.getText());
+         // Limpar os campos após o cadastro
         alert.showAndWait();
     }
 }

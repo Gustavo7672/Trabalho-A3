@@ -1,71 +1,116 @@
 package br.com.projetoa3.modelo;
 
-public class Professor {
-    private static String emailVerificar;
-    private static String senhaVerificar;
-    private static String email;
-    private static String senha;
-    private static boolean emailValido = true;
-    private static boolean senhaValido = true;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 
-    public Professor(String email, String senha) {
+import java.util.HashMap;
+import java.util.Map;
+
+public class Professor {
+    private static String nomeLogado;
+    private static String raLogado;
+    private  String email;
+    private  String senha;
+    private  String nome;
+    private  String ra;
+    private static Map<Long, Professor> professorLista = new HashMap<>();
+    private static ObservableList<Professor> professorListaObservable = FXCollections.observableArrayList();
+
+    public Professor(String nome, String ra, String email, String senha) {
+        this.nome = nome;
+        this.ra = ra;
         this.email = email;
         this.senha = senha;
     }
 
-    public static String getEmailVerificar() {
-        return emailVerificar;
+    public static String getNomeLogado() {
+        return nomeLogado;
     }
 
-    public static void setEmailVerificar(String emailVerificar) {
-        Professor.emailVerificar = emailVerificar;
+    public static void setNomeLogado(String nomeLogado) {
+        Professor.nomeLogado = nomeLogado;
     }
 
-    public static String getSenhaVerificar() {
-        return senhaVerificar;
+    public static String getRaLogado() {
+        return raLogado;
     }
 
-    public static void setSenhaVerificar(String senhaVerificar) {
-        Professor.senhaVerificar = senhaVerificar;
+    public static void setRaLogado(String raLogado) {
+        Professor.raLogado = raLogado;
     }
 
-    public static void validarEmail() {
-        if(email != null && email.contains("@") && email.contains(".")){
-            emailValido = true;
+    public static Map<Long, Professor> getProfessorLista() {
+        return professorLista;
+    }
+
+    public void adicionarProfessor(Professor professor) {
+        professorLista.put(Long.parseLong(professor.getRa()), professor);
+        professorListaObservable.add(professor);
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getRa() {
+        return ra;
+    }
+
+    public void setRa(String ra) {
+        this.ra = ra;
+    }
+
+    public boolean validarEmail() {
+
+if(email != null && email.contains("@") && email.contains(".") && email.contains("com") && email.length() >= 10 && email.length() <= 50){
+    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Email valido");
+    alert.showAndWait();
+           return true;
         }else{
-            emailValido = false;
-        }
-        if(emailValido){
-        }else{
-            System.out.println("email invalido");
-            System.exit(0);
+            Alert alert = new Alert(Alert.AlertType.ERROR, "Email invalido");
+            alert.showAndWait();
+            return false;
         }
     }
 
-    public static void validarSenha() {
+    public boolean validarSenha() {
         if (senha != null && senha.length() >= 6) {
-            senhaValido = true;
-        }else{
-            senhaValido = false;
-        } if(senhaValido){
-    }else {
-            System.out.println("senha invalido");
-            System.exit(0);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "senha valida");
+            alert.showAndWait();
+            return true;
+        }else {
+            Alert alert = new Alert(Alert.AlertType.ERROR, "senha invalida");
+            alert.showAndWait();
+            return false;
         }
     }
-    public static String getEmail() {
+    public  String getEmail() {
         return email;
     }
 
-    public static String getSenha() {
+    public  String getSenha() {
         return senha;
     }
 
-    public static void setEmail(String emailUsuario) {
+    public  void setEmail(String emailUsuario) {
         email = emailUsuario;
     }
 
-    public static void setSenha(String senhaUsuario) {
+    public  void setSenha(String senhaUsuario) {
         senha = senhaUsuario;
+    }
+
+    public static Professor getProfessorLogado(String nome, String ra) {
+        for (Professor professor : professorLista.values()) {
+            if (professor.getEmail().equals(nome) && professor.getSenha().equals(ra)) {
+                return professor;
+            }
+        }
+        return null;
     }
 }

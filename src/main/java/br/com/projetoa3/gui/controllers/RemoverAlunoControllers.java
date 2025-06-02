@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 public class RemoverAlunoControllers implements Initializable {
 
     @FXML
-    private Button comfirmarRemorcao;
+    private Button confirmarRemorcao;
 
     @FXML
     private TextField removerRA;
@@ -22,21 +22,35 @@ public class RemoverAlunoControllers implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        comfirmarRemorcao.setOnAction(event -> {
-            String ra = removerRA.getText();
-            Integer raInt = Integer.parseInt(ra);
+        confirmarRemorcao.setOnAction(event -> {
+            String ra = removerRA.getText().trim();
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            if (raInt.toString().length() != 10) {
 
+            if (ra.isEmpty()) {
+                alert.setContentText("Por favor, digite o RA.");
+                alert.showAndWait();
+                return;
+            }
+
+            if (!ra.matches("\\d+")) {
+                alert.setContentText("RA inválido. Digite apenas números.");
+                alert.showAndWait();
+                return;
+            }
+
+            if (ra.length() != 10) {
                 alert.setContentText("RA inválido. Deve ter 10 dígitos.");
                 alert.showAndWait();
                 return;
-            } else if (!Alunos.getLista().containsKey(raInt.longValue())) {
+            }
+
+            long raLong = Long.parseLong(ra);
+            if (!Alunos.getLista().containsKey(raLong)) {
                 alert.setContentText("Aluno não encontrado.");
                 alert.showAndWait();
                 return;
             }
-            Alunos.removerAluno(raInt.longValue());
+            Alunos.removerAluno(raLong);
             alert.setContentText("Aluno removido com sucesso.");
             alert.showAndWait();
         });

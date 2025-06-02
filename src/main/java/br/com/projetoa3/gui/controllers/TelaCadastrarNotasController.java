@@ -44,6 +44,14 @@ public class TelaCadastrarNotasController implements Initializable {
                 exibirNotasDoAluno(newVal);
             }
         });
+
+        confirmarCadastro.setOnAction(event -> {
+            if (alunoSelecionado != null) {
+                cadastrarNotas();
+            } else {
+                System.out.println("Selecione um aluno da lista.");
+            }
+        });
     }
 
     @FXML
@@ -68,7 +76,9 @@ public class TelaCadastrarNotasController implements Initializable {
 
     @FXML
     private void exibirNotasDoAluno(Alunos aluno) {
-        labelNomeSelecionado.setText(aluno.getNome()); // optional, for display
+
+        labelNomeSelecionado.setText(aluno.getNome());
+
 
         Notas notas = Notas.getNotaPorAluno(aluno.getRa());
         if (notas != null) {

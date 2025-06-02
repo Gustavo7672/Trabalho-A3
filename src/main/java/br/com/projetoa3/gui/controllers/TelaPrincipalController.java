@@ -1,5 +1,6 @@
 package br.com.projetoa3.gui.controllers;
 
+import br.com.projetoa3.modelo.Professor;
 import br.com.projetoa3.modelo.Alunos;
 import br.com.projetoa3.modelo.Notas;
 import javafx.beans.property.BooleanProperty;
@@ -52,6 +53,8 @@ public class TelaPrincipalController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        nomeL.setText("Professor: " + Professor.getNomeLogado());
+        RAL.setText("RA: " + Professor.getRaLogado());
         // Parte que chama o calendário
         calendario.setValue(LocalDate.now());
 
@@ -82,6 +85,16 @@ public class TelaPrincipalController implements Initializable {
                 String raStr = partes[1].replace("RA:", "").trim();
 
                 try {
+                    ObservableList<String> listaNotas = FXCollections.observableArrayList();
+                    for (Notas nota: Notas.getNotasObservable()) {
+                       listaNotas.add(nota.toString());
+                    }
+                    Notas.getNotasObservable().addListener((ListChangeListener<Notas>) change -> {
+                        listaNotas.clear();
+                        for (Notas nota : Notas.getNotasObservable()) {
+                            alunosFormatados.add(nota.toString());
+                        }
+                    });
                     //aqui tranforma de novo em número
                     Long ra = Long.parseLong(raStr);
                     //aqui vai pegar as notas e colocar na variavel

@@ -11,8 +11,8 @@ import java.io.IOException;
 public class mainFx extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/telaPrincipal.fxml"));
-        Scene scene = new Scene(root, 1280, 720);
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login.fxml"));
+        Scene scene = new Scene(root,430 , 480);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
