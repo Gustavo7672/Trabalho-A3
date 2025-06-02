@@ -28,7 +28,7 @@
                         <Insets left="35.0" right="35.0" top="20.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button fx:id="comfirmarRemorcao" mnemonicParsing="false" prefHeight="37.0" prefWidth="70.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-padding: 10; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-radius: 15;" text="Apagar">
+                  <Button fx:id="confirmarRemorcao" mnemonicParsing="false" prefHeight="37.0" prefWidth="70.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-padding: 10; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-radius: 15;" text="Apagar">
                      <VBox.margin>
                         <Insets left="240.0" top="50.0" />
                      </VBox.margin>

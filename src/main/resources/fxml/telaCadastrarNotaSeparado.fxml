@@ -10,11 +10,11 @@
 <?import javafx.scene.text.Font?>
 
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<HBox fx:controller="br.com.projetoa3.gui.controllers.TelaCadastrarNotasController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox prefHeight="570.0" prefWidth="354.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-padding: 10; -fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244; -fx-border-width: 2;">
          <children>
-            <ListView prefHeight="565.0" prefWidth="279.0" style="-fx-padding: 4 8; -fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;" />
+            <ListView fx:id="ListaNomesNotas" prefHeight="565.0" prefWidth="279.0" style="-fx-padding: 4 8; -fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;" />
          </children>
          <HBox.margin>
             <Insets bottom="15.0" left="15.0" top="15.0" />
@@ -35,7 +35,7 @@
                         <Insets top="30.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="cadastrarNotaA1I" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                  <TextField fx:id="cadastrarNotaA1" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -48,7 +48,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="cadastrarNotaA1I1" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                  <TextField fx:id="cadastrarNotaA2" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
@@ -61,12 +61,12 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="cadastrarNotaA1I11" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                  <TextField fx:id="cadastrarNotaA3" prefHeight="40.0" prefWidth="345.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button contentDisplay="TOP" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-text-fill: black; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-border-radius: 15; -fx-border-color: #002244; -fx-font-weight: bold;" text="Cadastrar">
+                  <Button fx:id="confirmarCadastro" contentDisplay="TOP" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-text-fill: black; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-border-radius: 15; -fx-border-color: #002244; -fx-font-weight: bold;" text="Cadastrar">
                      <VBox.margin>
                         <Insets left="125.0" top="60.0" />
                      </VBox.margin>
