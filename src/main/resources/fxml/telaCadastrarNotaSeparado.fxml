@@ -66,7 +66,9 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </TextField>
+
                   <Button fx:id="confirmarCadastro" contentDisplay="TOP" mnemonicParsing="false" prefHeight="35.0" prefWidth="80.0" style="-fx-background-radius: 15; -fx-text-fill: black; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-border-radius: 15; -fx-border-color: #002244; -fx-font-weight: bold;" text="Cadastrar">
+
                      <VBox.margin>
                         <Insets left="125.0" top="60.0" />
                      </VBox.margin>
@@ -77,3 +79,5 @@
       </VBox>
    </children>
 </HBox>
+
+

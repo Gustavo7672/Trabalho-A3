@@ -1,5 +1,7 @@
 package br.com.projetoa3.gui.controllers;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -42,6 +44,7 @@ public class TelaCadastrarNotasController implements Initializable {
                 exibirNotasDoAluno(newVal);
             }
         });
+
         confirmarCadastro.setOnAction(event -> {
             if (alunoSelecionado != null) {
                 cadastrarNotas();
@@ -73,7 +76,9 @@ public class TelaCadastrarNotasController implements Initializable {
 
     @FXML
     private void exibirNotasDoAluno(Alunos aluno) {
+
         labelNomeSelecionado.setText(aluno.getNome());
+
 
         Notas notas = Notas.getNotaPorAluno(aluno.getRa());
         if (notas != null) {
