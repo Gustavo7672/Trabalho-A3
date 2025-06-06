@@ -21,11 +21,6 @@
             <items>
               <MenuItem mnemonicParsing="false" text="Salvar " />
                   <MenuItem mnemonicParsing="false" text="Exportar Tabela" />
-                  <Menu fx:id="trocarTurmaMenu" mnemonicParsing="false" onAction="#mostrarTurmas" text="Trocar de turma">
-                     <items>
-                        <MenuItem fx:id="turma1" mnemonicParsing="false" text="Trocar de Turma" />
-                     </items>
-                  </Menu>
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="Edit">
@@ -33,6 +28,12 @@
               <MenuItem fx:id="CadastrarAlunos" mnemonicParsing="false" onAction="#abrirTelaCadastro" text="Adicionar Alunos" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirTelaNotas" text="Adicionar Notas" />
                   <MenuItem mnemonicParsing="false" onAction="#abrirTelaRemoverAluno" text="Remover Aluno" />
+                  <MenuItem mnemonicParsing="false" onAction="#adicionarTurma" text="Adicionar Turma" />
+                  <Menu fx:id="trocarTurmaMenu" mnemonicParsing="false" onAction="#mostrarTurmas" text="Trocar de Turma">
+                     <items>
+                        <MenuItem fx:id="TrocarTurma" mnemonicParsing="false" text="TrocarTurma" />
+                     </items>
+                  </Menu>
             </items>
           </Menu>
         </menus>
@@ -41,7 +42,7 @@
          <children>
             <StackPane prefHeight="974.0" prefWidth="600.0" style="-fx-background-color: #ADD8E6; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2; -fx-padding: 10;" HBox.hgrow="SOMETIMES">
                <children>
-                  <VBox alignment="CENTER" prefHeight="978.0" prefWidth="568.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #003366, #66ccff); -fx-background-radius: 12; -fx-border-color: #002244; -fx-border-width: 1; -fx-border-radius: 12;">
+                  <VBox alignment="CENTER" prefHeight="978.0" prefWidth="568.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #003366, #66ccff); -fx-background-radius: 15; -fx-border-color: #002244; -fx-border-width: 1; -fx-border-radius: 15;">
                      <children>
                         <ImageView fx:id="imagemId" fitHeight="279.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                            <VBox.margin>
@@ -75,7 +76,7 @@
                <children>
                   <VBox maxWidth="-Infinity" minHeight="-Infinity" prefHeight="330.0" prefWidth="1296.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10; -fx-border-width: 2;">
                      <children>
-                        <ListView fx:id="listViewId" prefHeight="500.0" prefWidth="852.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 40; -fx-padding: 4 8;" stylesheets="@../../java/br/com/projetoa3/gui/EstiloLista.css" />
+                        <ListView fx:id="listaAlunosId" prefHeight="500.0" prefWidth="852.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 40; -fx-padding: 4 8;" stylesheets="@../../java/br/com/projetoa3/gui/EstiloLista.css" />
                      </children>
                      <opaqueInsets>
                         <Insets />

@@ -1,15 +1,13 @@
 package br.com.projetoa3.gui.controllers;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import br.com.projetoa3.modelo.Notas;
 import br.com.projetoa3.modelo.Alunos;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -41,6 +39,7 @@ public class TelaCadastrarNotasController implements Initializable {
         ListaNomesNotas.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
                 alunoSelecionado = newVal;
+
                 exibirNotasDoAluno(newVal);
             }
         });
@@ -60,7 +59,22 @@ public class TelaCadastrarNotasController implements Initializable {
             int notaA1 = Integer.parseInt(cadastrarNotaA1.getText());
             int notaA2 = Integer.parseInt(cadastrarNotaA2.getText());
             int notaA3 = Integer.parseInt(cadastrarNotaA3.getText());
-
+            if (notaA1 < 0 || notaA1 > 30 || notaA2 < 0 || notaA2 > 30 || notaA3 < 0 || notaA3 > 40) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "As notas A1 e A2 devem estar entre 0 e 30, e A3 deve estar entre 0 e 40.");
+                alert.setTitle("Erro de Validação");
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+                alert.showAndWait();
+                return;
+            }else if (cadastrarNotaA1.getText().isEmpty() || cadastrarNotaA2.getText().isEmpty() || cadastrarNotaA3.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Por favor, preencha todos os campos de notas.");
+                alert.setTitle("Erro de Validação");
+                Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+                alert.showAndWait();
+                return;
+            }
+            //aqui vai setar os elementos na ListView de Alunos
             Notas novaNota = new Notas(notaA1, notaA2, notaA3);
 
             Notas.adicionarNota(alunoSelecionado.getRa(), novaNota);
@@ -68,6 +82,14 @@ public class TelaCadastrarNotasController implements Initializable {
             cadastrarNotaA1.clear();
             cadastrarNotaA2.clear();
             cadastrarNotaA3.clear();
+
+            exibirNotasDoAluno(alunoSelecionado);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION, "Notas cadastradas com sucesso para o aluno: " + alunoSelecionado.getNome());
+            alert.setTitle("Cadastro de Notas");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+            alert.showAndWait();
         } catch (NumberFormatException e) {
             System.out.println("Erro: Insira apenas números válidos.");
 

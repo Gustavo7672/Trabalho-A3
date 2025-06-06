@@ -68,26 +68,23 @@ public class Professor {
     public boolean validarEmail() {
 
 if(email != null && email.contains("@") && email.contains(".") && email.contains("com") && email.length() >= 10 && email.length() <= 50){
-    Alert alert = new Alert(Alert.AlertType.INFORMATION, "Email valido");
-    alert.showAndWait();
+
            return true;
         }else{
-            Alert alert = new Alert(Alert.AlertType.ERROR, "Email invalido");
-            alert.showAndWait();
+
             return false;
         }
     }
 
     public boolean validarSenha() {
         if (senha != null && senha.length() >= 6) {
-            Alert alert = new Alert(Alert.AlertType.INFORMATION, "senha valida");
-            alert.showAndWait();
+
             return true;
         }else {
-            Alert alert = new Alert(Alert.AlertType.ERROR, "senha invalida");
-            alert.showAndWait();
+
             return false;
         }
+
     }
     public  String getEmail() {
         return email;

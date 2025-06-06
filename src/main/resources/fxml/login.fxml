@@ -10,63 +10,68 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="430.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.projetoa3.gui.controllers.LoginControllers">
-    <children>
-        <VBox prefHeight="343.0" prefWidth="474.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 10; -fx-border-width: 2;">
-            <children>
-                <VBox prefHeight="494.0" prefWidth="402.0" style="-fx-background-color: white; -fx-padding: 10; -fx-border-radius: 15; -fx-background-radius: 15;">
-                    <children>
-                        <Label style="-fx-font-weight: bold;" text="Login">
-                            <VBox.margin>
-                                <Insets left="150.0" top="20.0" />
-                            </VBox.margin>
-                            <font>
-                                <Font size="28.0" />
-                            </font>
-                        </Label>
-                        <Label style="-fx-font-weight: bold;" text="Usuário">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="10.0" top="20.0" />
-                            </VBox.margin>
-                        </Label>
-                        <TextField fx:id="LoginUsuario" promptText="Digite email ou RA" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
-                            <VBox.margin>
-                                <Insets top="10.0" />
-                            </VBox.margin>
-                        </TextField>
-                        <Label style="-fx-font-weight: bold;" text="Senha">
-                            <font>
-                                <Font size="20.0" />
-                            </font>
-                            <VBox.margin>
-                                <Insets left="10.0" top="35.0" />
-                            </VBox.margin>
-                        </Label>
-                        <PasswordField fx:id="LoginSenha" promptText="Digite sua senha" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
-                            <VBox.margin>
-                                <Insets top="10.0" />
-                            </VBox.margin>
-                        </PasswordField>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="80.0">
-                            <children>
-                                <Button fx:id="botaoEntrar" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: 15; -fx-background-color: 15; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15;" text="Entrar" />
-                                <Button fx:id="botaoCadastrar" mnemonicParsing="false" onAction="#AbrirCadastrar" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: 15; -fx-background-color: 15; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15;" text="Cadastrar" />
-                            </children>
-                            <VBox.margin>
-                                <Insets left="60.0" top="50.0" />
-                            </VBox.margin>
-                        </HBox>
-                    </children>
-                </VBox>
-            </children>
-            <styleClass>
-                <String fx:value="linear-gradient(from 0% 0% to 100% 100%" />
-                <String fx:value=" #ADD8E6" />
-                <String fx:value=" #66ccff)" />
-            </styleClass>
-        </VBox>
-    </children>
-</HBox>
+
+<VBox style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.projetoa3.gui.controllers.LoginControllers">
+   <children>
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="430.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2;">
+          <children>
+              <VBox prefHeight="343.0" prefWidth="474.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 10; -fx-border-width: 2;">
+                  <children>
+                      <VBox prefHeight="494.0" prefWidth="402.0" style="-fx-background-color: white; -fx-padding: 10; -fx-border-radius: 15; -fx-background-radius: 15;">
+                          <children>
+                              <Label style="-fx-font-weight: bold;" text="Login">
+                                  <VBox.margin>
+                                      <Insets left="150.0" top="20.0" />
+                                  </VBox.margin>
+                                  <font>
+                                      <Font size="28.0" />
+                                  </font>
+                              </Label>
+                              <Label style="-fx-font-weight: bold;" text="Email">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                                  <VBox.margin>
+                                      <Insets left="10.0" top="20.0" />
+                                  </VBox.margin>
+                              </Label>
+                              <TextField fx:id="LoginUsuario" promptText="Digite seu email" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                                  <VBox.margin>
+                                      <Insets top="10.0" />
+                                  </VBox.margin>
+                              </TextField>
+                              <Label style="-fx-font-weight: bold;" text="Senha">
+                                  <font>
+                                      <Font size="20.0" />
+                                  </font>
+                                  <VBox.margin>
+                                      <Insets left="10.0" top="35.0" />
+                                  </VBox.margin>
+                              </Label>
+                              <PasswordField fx:id="LoginSenha" promptText="Digite sua senha" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                                  <VBox.margin>
+                                      <Insets top="10.0" />
+                                  </VBox.margin>
+                              </PasswordField>
+                              <HBox prefHeight="100.0" prefWidth="200.0" spacing="80.0">
+                                  <children>
+                                      <Button fx:id="botaoEntrar" mnemonicParsing="false" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: 15; -fx-background-color: 15; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15;" text="Entrar" />
+                                      <Button fx:id="botaoCadastrar" mnemonicParsing="false" onAction="#AbrirCadastrar" prefHeight="40.0" prefWidth="90.0" style="-fx-border-color: 15; -fx-background-color: 15; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15;" text="Cadastrar" />
+                                  </children>
+                                  <VBox.margin>
+                                      <Insets left="60.0" top="50.0" />
+                                  </VBox.margin>
+                              </HBox>
+                          </children>
+                      </VBox>
+                  </children>
+                  <styleClass>
+                      <String fx:value="linear-gradient(from 0% 0% to 100% 100%" />
+                      <String fx:value=" #ADD8E6" />
+                      <String fx:value=" #66ccff)" />
+                  </styleClass>
+              </VBox>
+          </children>
+      </HBox>
+   </children>
+</VBox>

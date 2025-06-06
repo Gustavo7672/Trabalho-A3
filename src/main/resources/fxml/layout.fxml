@@ -8,69 +8,74 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.projetoa3.gui.controllers.CadastroProfessorControllers">
+
+<VBox style="-fx-padding: 15;" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.projetoa3.gui.controllers.CadastroProfessorControllers">
    <children>
-      <VBox prefHeight="343.0" prefWidth="474.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10; -fx-border-width: 2;">
+      <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="430.0">
          <children>
-            <VBox prefHeight="494.0" prefWidth="402.0" style="-fx-background-color: white; -fx-padding: 10; -fx-border-radius: 15; -fx-background-radius: 15;">
+            <VBox prefHeight="343.0" prefWidth="474.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10; -fx-border-width: 2;">
                <children>
-                  <Label prefHeight="17.0" prefWidth="47.0" style="-fx-font-weight: bold;" text="Nome">
+                  <VBox prefHeight="494.0" prefWidth="402.0" style="-fx-background-color: white; -fx-padding: 10; -fx-border-radius: 15; -fx-background-radius: 15;">
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="47.0" style="-fx-font-weight: bold;" text="Nome">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="Nome" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                           <opaqueInsets>
+                              <Insets />
+                           </opaqueInsets>
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label prefHeight="17.0" prefWidth="26.0" style="-fx-font-weight: bold;" text="RA">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="RA" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label style="-fx-font-weight: bold;" text="Email">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <TextField fx:id="Email" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </TextField>
+                        <Label style="-fx-font-weight: bold;" text="Senha">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <PasswordField fx:id="Senha" prefHeight="25.0" prefWidth="151.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
+                        </PasswordField>
+                        <Button fx:id="BotaoCadastrar" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" style="-fx-border-color: 15; -fx-background-radius: 15; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff);" text="Cadastrar">
+                           <VBox.margin>
+                              <Insets left="150.0" top="50.0" />
+                           </VBox.margin>
+                        </Button>
+                     </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="Nome" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
-                     <opaqueInsets>
                         <Insets />
-                     </opaqueInsets>
-                     <VBox.margin>
-                        <Insets top="10.0" />
                      </VBox.margin>
-                  </TextField>
-                  <Label prefHeight="17.0" prefWidth="26.0" style="-fx-font-weight: bold;" text="RA">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="RA" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label style="-fx-font-weight: bold;" text="Email">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <TextField fx:id="Email" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </TextField>
-                  <Label style="-fx-font-weight: bold;" text="Senha">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <PasswordField fx:id="Senha" prefHeight="25.0" prefWidth="151.0" style="-fx-border-radius: 15; -fx-background-radius: 15; -fx-border-color: #002244;">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin>
-                  </PasswordField>
-                  <Button fx:id="BotãoCadastrar" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" style="-fx-border-color: 15; -fx-background-radius: 15; -fx-border-color: #002244; -fx-border-radius: 15; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff);" text="Cadastrar">
-                     <VBox.margin>
-                        <Insets left="150.0" top="50.0" />
-                     </VBox.margin>
-                  </Button>
+                  </VBox>
                </children>
-               <VBox.margin>
+               <HBox.margin>
                   <Insets />
-               </VBox.margin>
+               </HBox.margin>
             </VBox>
          </children>
-         <HBox.margin>
-            <Insets />
-         </HBox.margin>
-      </VBox>
+      </HBox>
    </children>
-</HBox>
+</VBox>

@@ -8,15 +8,15 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class Notas {
-    private static Map<Long, Notas> notasPorAluno = new HashMap<>();
+    private final static Map<Long, Notas> notasPorAluno = new HashMap<>();
     private static ObservableList<Notas> notasObservable = FXCollections.observableArrayList();
 
 
-    private int notaA1;
-    private int notaA2;
-    private int notaA3;
-    private int somaNota;
-    private String status;
+    private final int notaA1;
+    private final int notaA2;
+    private final int notaA3;
+    private final int somaNota;
+    private final String status;
 
 
     public Notas(int notaA1, int notaA2, int notaA3) {
@@ -29,10 +29,6 @@ public class Notas {
 
     public static ObservableList<Notas> getNotasObservable() {
         return notasObservable;
-    }
-
-    public static void setNotasObservable(ObservableList<Notas> notasObservable) {
-        Notas.notasObservable = notasObservable;
     }
 
     public static void adicionarNota(Long ra, Notas nota) {

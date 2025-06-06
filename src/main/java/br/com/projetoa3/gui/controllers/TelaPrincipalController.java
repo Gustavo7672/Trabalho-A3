@@ -13,6 +13,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import br.com.projetoa3.modelo.ListaPresenca;
 import javafx.stage.Stage;
@@ -24,6 +25,9 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class TelaPrincipalController implements Initializable {
+    private static final ObservableList<String> alunosFormatados = FXCollections.observableArrayList();
+
+    private static final ObservableList<String> listaNotas = FXCollections.observableArrayList();
     @FXML
     private Label RAL;
 
@@ -33,7 +37,7 @@ public class TelaPrincipalController implements Initializable {
     private Menu trocarTurmaMenu;
 
     @FXML
-    private MenuItem turma1;
+    private MenuItem TrocarTurma;
 
     @FXML
     private ListView<String> listaNotasId;
@@ -45,7 +49,7 @@ public class TelaPrincipalController implements Initializable {
     private ListView<String> listaDePresenca;
 
     @FXML
-    private ListView<String> listViewId;
+    private ListView<String> listaAlunosId;
 
     @FXML
     private Label nomeL;
@@ -53,17 +57,21 @@ public class TelaPrincipalController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Alunos.getListaObservable().addListener((ListChangeListener<Alunos>) change -> {
+            mostrarTurmas();
+        });
+        listaNotasId.getItems().clear();
         nomeL.setText("Professor: " + Professor.getNomeLogado());
         RAL.setText("RA: " + Professor.getRaLogado());
-        // Parte que chama o calendário
         calendario.setValue(LocalDate.now());
 
         calendario.valueProperty().addListener((obs, oldDate, newDate) -> {
             carregarPresencas(newDate);
         });
         carregarPresencas(LocalDate.now());
-        //Parte do ListView de Alunos
-        ObservableList<String> alunosFormatados = FXCollections.observableArrayList();
+        for (Notas nota : Notas.getNotasObservable()) {
+            listaNotas.add(nota.toString());
+        }
 
         for (Alunos aluno : Alunos.getListaObservable()) {
             alunosFormatados.add(aluno.toString());
@@ -71,36 +79,25 @@ public class TelaPrincipalController implements Initializable {
 
         Alunos.getListaObservable().addListener((ListChangeListener<Alunos>) change -> {
             alunosFormatados.clear();
+
             for (Alunos aluno : Alunos.getListaObservable()) {
                 alunosFormatados.add(aluno.toString());
             }
         });
-        //aqui vai setar os elementos na ListView de Alunos
-        listViewId.setItems(alunosFormatados);
+        listaAlunosId.setItems(alunosFormatados);
 
-        //Aqui tranforma o ra em texto
-        listViewId.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+
+        listaAlunosId.getSelectionModel().selectedItemProperty().addListener((obs, oldValue, newValue) -> {
+            listaNotasId.getItems().clear();
             if (newValue != null) {
                 String[] partes = newValue.split("\\|");
                 String raStr = partes[1].replace("RA:", "").trim();
 
                 try {
-                    ObservableList<String> listaNotas = FXCollections.observableArrayList();
-                    for (Notas nota: Notas.getNotasObservable()) {
-                       listaNotas.add(nota.toString());
-                    }
-                    Notas.getNotasObservable().addListener((ListChangeListener<Notas>) change -> {
-                        listaNotas.clear();
-                        for (Notas nota : Notas.getNotasObservable()) {
-                            alunosFormatados.add(nota.toString());
-                        }
-                    });
-                    //aqui tranforma de novo em número
+                    listaNotasId.refresh();
                     Long ra = Long.parseLong(raStr);
-                    //aqui vai pegar as notas e colocar na variavel
                     Notas nota = Notas.getNotaPorAluno(ra);
                     if (nota != null) {
-                        // aqui vai setar as notas na ListView
                         listaNotasId.getItems().setAll(
                                 "A1: " + nota.getNotaA1(),
                                 "A2: " + nota.getNotaA2(),
@@ -116,37 +113,37 @@ public class TelaPrincipalController implements Initializable {
                 }
             }
         });
-
+        Alunos.getListaObservable().addListener((ListChangeListener<Alunos>) change -> {
+            alunosFormatados.clear();
+            for (Alunos aluno : Alunos.getListaObservable()) {
+                alunosFormatados.add(aluno.toString());
+            }
+            carregarPresencas(calendario.getValue());
+        });
     }
 
     private void carregarPresencas(LocalDate data) {
-//Lista com ra e boolean de presença
+        listaDePresenca.refresh();
         Map<Long, BooleanProperty> presencaData = ListaPresenca.getPresencas()
                 .computeIfAbsent(data, d -> new HashMap<>());
-        //chama a lista de alunos e coloca os checkbox desmarcados
         Alunos.getListaObservable().forEach(aluno ->
                 presencaData.putIfAbsent(aluno.getRa(), new SimpleBooleanProperty(false))
         );
-        //observable list tornara a lista dinamica
         ObservableList<String> nomes = FXCollections.observableArrayList();
-        //adicionando os nomes no observable
         Alunos.getListaObservable().forEach(aluno ->
                 nomes.add(aluno.getNome() + " | RA: " + aluno.getRa())
         );
-        //aqui vai setar os nomes na ListView de presença
         listaDePresenca.setItems(nomes);
-// cria os check box na lista de alunos no listview de presença
+        listaDePresenca.refresh();
         listaDePresenca.setCellFactory(lv -> new ListCell<>() {
             private final CheckBox checkBox = new CheckBox();
 
             @Override
             protected void updateItem(String item, boolean empty) {
-                //se a lista estiver vazia ou nula não vai aparecer nada
                 super.updateItem(item, empty);
                 if (empty || item == null) {
                     setGraphic(null);
                 } else {
-                    //se tiver, vai aparacer o check box com nome do alunos na frente
                     checkBox.setText(item);
                     Long ra = Long.parseLong(item.split("RA: ")[1].trim());
                     checkBox.selectedProperty().unbind();
@@ -164,26 +161,33 @@ public class TelaPrincipalController implements Initializable {
         TelaCadastroController controller = loader.getController();
         Stage stage = new Stage();
         stage.setTitle("Cadastro de Aluno");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
         stage.setScene(new Scene(root, 800, 600));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(mainStage);
         stage.setResizable(false);
+        listaDePresenca.refresh();
         stage.showAndWait();
 
     }
 
     @FXML
     private void abrirTelaNotas() throws IOException {
+        listaNotasId.getItems().clear();
+        listaAlunosId.getSelectionModel().clearSelection();
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/telaCadastrarNotaSeparado.fxml"));
         Parent root = loader.load();
         TelaCadastrarNotasController controller = loader.getController();
         Stage stage = new Stage();
         stage.setTitle("Cadastro de Notas");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
         stage.setScene(new Scene(root, 800, 600));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(mainStage);
         stage.setResizable(false);
+        listaNotasId.refresh();
         stage.showAndWait();
+
     }
 
     @FXML
@@ -193,12 +197,14 @@ public class TelaPrincipalController implements Initializable {
         RemoverAlunoControllers controller = loader.getController();
         Stage stage = new Stage();
         stage.setTitle("Remover Aluno");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
         stage.setScene(new Scene(root, 600, 400));
         stage.initModality(Modality.APPLICATION_MODAL);
         stage.initOwner(mainStage);
         stage.setResizable(false);
         stage.showAndWait();
     }
+
     @FXML
     private void filtrarAlunosPorTurma(String turma) {
         ObservableList<String> alunosFiltrados = FXCollections.observableArrayList();
@@ -207,21 +213,42 @@ public class TelaPrincipalController implements Initializable {
                 alunosFiltrados.add(aluno.toString());
             }
         }
-        listViewId.setItems(alunosFiltrados);
+        listaAlunosId.setItems(alunosFiltrados);
     }
-    @FXML
-        public void mostrarTurmas() {
-            trocarTurmaMenu.getItems().clear();
-            List<String> turmas = new ArrayList<>(Alunos.getListaObservable().stream()
-                    .map(Alunos::getTurma)
-                    .distinct()
-                    .toList());
 
-            for (String turma : turmas) {
-                MenuItem item = new MenuItem(turma);
-                item.setOnAction(event -> filtrarAlunosPorTurma(turma));
-                trocarTurmaMenu.getItems().add(item);
-            }
-            }
+    @FXML
+    public void mostrarTurmas() {
+        trocarTurmaMenu.getItems().clear();
+
+        MenuItem todasTurmas = new MenuItem("Todas as turmas");
+        todasTurmas.setOnAction(event -> listaAlunosId.setItems(alunosFormatados));
+        trocarTurmaMenu.getItems().add(todasTurmas);
+
+        List<String> turmas = new ArrayList<>(Alunos.getListaObservable().stream()
+                .map(Alunos::getTurma)
+                .distinct()
+                .toList());
+
+        for (String turma : turmas) {
+            MenuItem item = new MenuItem(turma);
+            item.setOnAction(event -> filtrarAlunosPorTurma(turma));
+            trocarTurmaMenu.getItems().add(item);
         }
+    }
+
+    @FXML
+    public void adicionarTurma() throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/AdicionarTurma.fxml"));
+        Parent root = loader.load();
+        TelaAdicionarTurmaController controller = loader.getController();
+        Stage stage = new Stage();
+        stage.setTitle("Adicionar Turma");
+        stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+        stage.setScene(new Scene(root, 600, 380));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.initOwner(mainStage);
+        stage.setResizable(false);
+        stage.showAndWait();
+    }
+}
 
