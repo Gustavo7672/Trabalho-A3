@@ -37,9 +37,6 @@ public class TelaPrincipalController implements Initializable {
     private Menu trocarTurmaMenu;
 
     @FXML
-    private MenuItem TrocarTurma;
-
-    @FXML
     private ListView<String> listaNotasId;
 
     @FXML
@@ -250,5 +247,23 @@ public class TelaPrincipalController implements Initializable {
         stage.setResizable(false);
         stage.showAndWait();
     }
+
+    public void sairDaConta(){
+        try {
+            Stage stage = (Stage) RAL.getScene().getWindow();
+            stage.close();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
+            Parent root = loader.load();
+            Stage loginStage = new Stage();
+            loginStage.setTitle("Login");
+            loginStage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+            loginStage.setScene(new Scene(root, 460, 510));
+            loginStage.setResizable(false);
+            loginStage.show();
+            listaAlunosId.getItems().clear();
+        } catch (IOException e) {
+            e.printStackTrace();
+    }
+}
 }
 

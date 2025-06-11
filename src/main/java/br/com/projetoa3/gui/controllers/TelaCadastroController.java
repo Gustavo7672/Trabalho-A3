@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -22,16 +21,6 @@ public class TelaCadastroController implements Initializable {
     @FXML
     private ComboBox<String> comboBoxTurma;
 
-    public ComboBox<String> getComboBoxTurma() {
-        return comboBoxTurma;
-    }
-    public void setComboBoxTurma(ComboBox<String> comboBoxTurma) {
-        this.comboBoxTurma = comboBoxTurma;
-    }
-
-    @FXML
-    private Button botaoConfirmarCadastro;
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -40,7 +29,7 @@ public class TelaCadastroController implements Initializable {
         }
     }
     @FXML
-    private void confirmarCadastro() throws IOException {
+    private void confirmarCadastro(){
 
         Long raLong = Long.parseLong(cadastrarRAId1.getText().trim());
 

@@ -1,9 +1,7 @@
 package br.com.projetoa3.gui.controllers;
 
 import br.com.projetoa3.modelo.Alunos;
-import br.com.projetoa3.modelo.Professor;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;

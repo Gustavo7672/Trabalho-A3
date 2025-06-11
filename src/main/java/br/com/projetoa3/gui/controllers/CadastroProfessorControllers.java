@@ -3,17 +3,12 @@ package br.com.projetoa3.gui.controllers;
 import br.com.projetoa3.modelo.Professor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class CadastroProfessorControllers implements Initializable {

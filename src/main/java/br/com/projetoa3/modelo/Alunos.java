@@ -13,9 +13,9 @@ public class Alunos {
     private static final Map<String, String> turmas = new HashMap<>();
     private static final ObservableList<String> turmasObservable = FXCollections.observableArrayList();
 
-    private String nome;
+    private final String nome;
     private long ra;
-    private String turma;
+    private final String turma;
 
     public Alunos(String nome, long ra, String turma) {
         this.nome = nome;
@@ -25,10 +25,6 @@ public class Alunos {
 
     public String getTurma() {
         return turma;
-    }
-
-    public static Map<String, String> getTurmas() {
-        return turmas;
     }
 
     public static ObservableList<String> getTurmasObservable() {
@@ -76,16 +72,8 @@ public class Alunos {
         return ra;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public void setRa(long ra) {
         this.ra = ra;
-    }
-
-    public void setTurma(String turma) {
-        this.turma = turma;
     }
 
     public String toString() {

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
@@ -12,8 +13,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.projetoa3.gui.controllers.TelaPrincipalController">
+<VBox prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.projetoa3.gui.controllers.TelaPrincipalController">
    <children>
       <MenuBar fx:id="menuBarSuperior">
         <menus>
@@ -40,11 +42,11 @@
       </MenuBar>
       <HBox prefHeight="1080.0" prefWidth="1920.0">
          <children>
-            <StackPane prefHeight="974.0" prefWidth="600.0" style="-fx-background-color: #ADD8E6; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2; -fx-padding: 10;" HBox.hgrow="SOMETIMES">
+            <StackPane prefHeight="580.0" prefWidth="350.0" style="-fx-background-color: #ADD8E6; -fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2; -fx-padding: 10;" HBox.hgrow="SOMETIMES">
                <children>
                   <VBox alignment="CENTER" prefHeight="978.0" prefWidth="568.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #003366, #66ccff); -fx-background-radius: 15; -fx-border-color: #002244; -fx-border-width: 1; -fx-border-radius: 15;">
                      <children>
-                        <ImageView fx:id="imagemId" fitHeight="279.0" fitWidth="230.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
+                        <ImageView fx:id="imagemId" fitHeight="233.0" fitWidth="360.0" pickOnBounds="true" preserveRatio="true" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="20.0" />
                            </VBox.margin>
@@ -52,16 +54,33 @@
                               <Image url="@../foto/fotoAvatar.jpg" />
                            </image>
                         </ImageView>
-                        <Label fx:id="nomeL" prefHeight="36.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 8;; -fx-padding: 4  10;;" text="NOME" VBox.vgrow="ALWAYS">
+                        <Label fx:id="nomeL" prefHeight="36.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 4  10; -fx-border-color: #002244; -fx-border-radius: 15;" text="NOME" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets top="50.0" />
                            </VBox.margin>
                         </Label>
-                        <Label fx:id="RAL" prefHeight="36.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 8; -fx-padding: 4    10;" text="RA" VBox.vgrow="ALWAYS">
+                        <Label fx:id="RAL" prefHeight="36.0" prefWidth="250.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-padding: 4    10; -fx-border-color: #002244; -fx-border-radius: 15;" text="RA" VBox.vgrow="ALWAYS">
                            <VBox.margin>
-                              <Insets bottom="95.0" top="10.0" />
+                              <Insets bottom="40.0" top="10.0" />
                            </VBox.margin>
                         </Label>
+                        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="145.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2;">
+                           <VBox.margin>
+                              <Insets bottom="20.0" left="160.0" right="160.0" />
+                           </VBox.margin>
+                           <children>
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sairDaConta" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10;" text="Sair da Conta">
+                                 <VBox.margin>
+                                    <Insets left="20.0" right="20.0" top="40.0" />
+                                 </VBox.margin>
+                              </Button>
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10;" text="Salvar">
+                                 <VBox.margin>
+                                    <Insets bottom="40.0" left="20.0" right="20.0" top="25.0" />
+                                 </VBox.margin>
+                              </Button>
+                           </children>
+                        </VBox>
                      </children>
                   </VBox>
                </children>
@@ -93,7 +112,7 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                      <children>
-                        <ListView fx:id="listaNotasId" prefHeight="649.0" prefWidth="488.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 60; -fx-padding: 4 8;" stylesheets="@../../java/br/com/projetoa3/gui/EstiloLista.css">
+                        <ListView fx:id="listaNotasId" prefHeight="649.0" prefWidth="488.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 60; -fx-padding: 4 8; -fx-background-radius: 15;" stylesheets="@../../java/br/com/projetoa3/gui/EstiloLista.css">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>
@@ -105,7 +124,15 @@
                                     <Insets bottom="20.0" />
                                  </VBox.margin>
                               </DatePicker>
-                              <ListView fx:id="listaDePresenca" prefHeight="620.0" prefWidth="681.0" style="-fx-background-radius: 15; -fx-border-color: #002244; -fx-border-radius: 15; -fx-padding: 4 8; -fx-fixed-cell-size: 40;" />
+                              <ListView fx:id="listaDePresenca" prefHeight="455.0" prefWidth="680.0" style="-fx-background-radius: 15; -fx-border-color: #002244; -fx-border-radius: 15; -fx-padding: 4 8; -fx-fixed-cell-size: 40;" />
+                              <Label alignment="CENTER" prefHeight="75.0" prefWidth="702.0" style="-fx-background-color: white; -fx-border-color: #002244; -fx-background-radius: 15; -fx-border-radius: 15; -fx-padding: 10;" text="Marque a caixinha para salvar a ausencia do aluno." textOverrun="CENTER_ELLIPSIS">
+                                 <VBox.margin>
+                                    <Insets top="25.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font name="Calibri" size="18.0" />
+                                 </font>
+                              </Label>
                            </children>
                         </VBox>
                      </children>
