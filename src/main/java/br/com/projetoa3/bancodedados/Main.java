@@ -18,6 +18,7 @@ public class Main {
 
         turmas.excluirTurma();
 
+        
         ProfessorCrud crud = new ProfessorCrud();
 
         crud.criarTabelaProfessores();
@@ -35,5 +36,10 @@ public class Main {
         crud.excluirProfessor("");
 
         crud.listarProfessores();
+
+
+        CriadorDeTabelas criador = new CriadorDeTabelas();
+
+        criador.criarTabelas();
     }
 }
