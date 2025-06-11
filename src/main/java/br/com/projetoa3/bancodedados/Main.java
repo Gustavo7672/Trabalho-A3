@@ -41,5 +41,20 @@ public class Main {
         CriadorDeTabelas criador = new CriadorDeTabelas();
 
         criador.criarTabelas();
+
+
+        NotasCrud manager = new NotasCrud();
+
+        manager.criarTabelaNotas();
+
+        manager.inserirNotas();
+
+        manager.listarNotasPorRA();
+
+        manager.buscarNotasPorId();
+
+        manager.atualizarNotas();
+
+        manager.excluirNotas();
     }
 }
