@@ -17,5 +17,23 @@ public class Main {
         turmas.atualizarTurma();
 
         turmas.excluirTurma();
+
+        ProfessorCrud crud = new ProfessorCrud();
+
+        crud.criarTabelaProfessores();
+
+        crud.inserirProfessor("", "", "", "");
+
+        crud.listarProfessores();
+
+        crud.buscarProfessorPorRa("");
+
+        crud.atualizarProfessor("", "", "", "");
+
+        crud.listarProfessores();
+
+        crud.excluirProfessor("");
+
+        crud.listarProfessores();
     }
 }
