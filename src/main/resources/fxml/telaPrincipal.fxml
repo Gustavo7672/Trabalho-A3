@@ -32,9 +32,6 @@
                   <MenuItem mnemonicParsing="false" onAction="#abrirTelaRemoverAluno" text="Remover Aluno" />
                   <MenuItem mnemonicParsing="false" onAction="#adicionarTurma" text="Adicionar Turma" />
                   <Menu fx:id="trocarTurmaMenu" mnemonicParsing="false" onAction="#mostrarTurmas" text="Trocar de Turma">
-                     <items>
-                        <MenuItem fx:id="TrocarTurma" mnemonicParsing="false" text="TrocarTurma" />
-                     </items>
                   </Menu>
             </items>
           </Menu>
@@ -95,7 +92,7 @@
                <children>
                   <VBox maxWidth="-Infinity" minHeight="-Infinity" prefHeight="330.0" prefWidth="1296.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10; -fx-border-width: 2;">
                      <children>
-                        <ListView fx:id="listaAlunosId" prefHeight="500.0" prefWidth="852.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 40; -fx-padding: 4 8;" stylesheets="@../../java/br/com/projetoa3/gui/EstiloLista.css" />
+                        <ListView fx:id="listaAlunosId" prefHeight="500.0" prefWidth="852.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 40; -fx-padding: 4 8;"/>
                      </children>
                      <opaqueInsets>
                         <Insets />
@@ -112,7 +109,7 @@
                         <Insets top="15.0" />
                      </VBox.margin>
                      <children>
-                        <ListView fx:id="listaNotasId" prefHeight="649.0" prefWidth="488.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 60; -fx-padding: 4 8; -fx-background-radius: 15;" stylesheets="@../../java/br/com/projetoa3/gui/EstiloLista.css">
+                        <ListView fx:id="listaNotasId" prefHeight="649.0" prefWidth="488.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 60; -fx-padding: 4 8; -fx-background-radius: 15;">
                            <HBox.margin>
                               <Insets right="50.0" />
                            </HBox.margin>

@@ -27,6 +27,14 @@ public class Notas {
         this.status = (somaNota >= 70) ? "Aprovado" : "Reprovado";
     }
 
+    public static void setNotasObservable(ObservableList<Notas> notasObs) {
+        notasObservable = notasObs;
+    }
+
+    public static void setNotasPorAluno(Map<Long, Notas> notas) {
+        notasPorAluno.putAll(notas);
+    }
+
     public static ObservableList<Notas> getNotasObservable() {
         return notasObservable;
     }

@@ -1,5 +1,6 @@
 package br.com.projetoa3.gui.controllers;
 
+import br.com.projetoa3.bancodedados.ProfessorCrud;
 import br.com.projetoa3.modelo.Professor;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -9,6 +10,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class CadastroProfessorControllers implements Initializable {
@@ -38,6 +40,7 @@ public class CadastroProfessorControllers implements Initializable {
     }
     @FXML
     protected void salvarDados()  {
+        ProfessorCrud crud = new ProfessorCrud();
 Alert alert = new Alert(Alert.AlertType.INFORMATION);
         Professor professor = new Professor(Nome.getText(), RA.getText(), Email.getText(), Senha.getText());
         if (professor.getNome().isEmpty() || professor.getRa().isEmpty() || professor.getEmail().isEmpty() || professor.getSenha().isEmpty()) {
@@ -49,6 +52,9 @@ Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.showAndWait();
         }else if (professor.validarEmail() && professor.validarSenha()) {
             professor.adicionarProfessor(professor);
+            for(Map.Entry<String, Professor> entry : Professor.getProfessorLista().entrySet()) {
+                crud.inserirProfessor(entry.getKey(), entry.getValue().getNome(), entry.getValue().getEmail(), entry.getValue().getSenha());
+            }
             alert.setContentText("Clique em OK para ir a tela de login.");
             alert.setTitle("Cadastro de Professor");
             alert.setHeaderText("Professor cadastrado com sucesso!");

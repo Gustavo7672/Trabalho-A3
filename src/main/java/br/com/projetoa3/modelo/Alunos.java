@@ -7,44 +7,28 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
-public class Alunos {
-    private final static Map<Long, Alunos> lista = new HashMap<>();
-    private final static ObservableList<Alunos> listaObservable = FXCollections.observableArrayList();
-    private static final Map<String, String> turmas = new HashMap<>();
-    private static final ObservableList<String> turmasObservable = FXCollections.observableArrayList();
+public class Alunos extends Turmas {
+    private static Map<String, Alunos> lista = new HashMap<>();
+    private static ObservableList<Alunos> listaObservable = FXCollections.observableArrayList();
 
     private final String nome;
     private long ra;
-    private final String turma;
 
-    public Alunos(String nome, long ra, String turma) {
+    public Alunos(String nome, long ra, String turma, String professor) {
+        super(turma, professor);
         this.nome = nome;
         this.ra = ra;
-        this.turma = turma;
     }
 
-    public String getTurma() {
-        return turma;
+    public static void setLista(Map<String, Alunos> listaAlunos) {
+        lista = listaAlunos;
     }
 
-    public static ObservableList<String> getTurmasObservable() {
-        return turmasObservable;
+    public static void setListaObservable(ObservableList<Alunos> listaObs) {
+        listaObservable = listaObs;
     }
 
-    public static void adicionarTurma(String numero, String nomeTurma) {
-        if (turmas.containsKey(numero)) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erro");
-            alert.setHeaderText("Turma já existe");
-            alert.setContentText("A turma " + nomeTurma + " já está cadastrada.");
-            alert.showAndWait();
-        } else {
-            turmas.put(numero, nomeTurma);
-            turmasObservable.add(nomeTurma);
-        }
-    }
-
-    public static Map<Long, Alunos> getLista() {
+    public static Map<String, Alunos> getLista() {
         return lista;
     }
 
@@ -53,7 +37,8 @@ public class Alunos {
     }
 
     public static void adicionarAluno(Alunos aluno) {
-        lista.put(aluno.getRa(), aluno);
+        String raString = String.valueOf(aluno.getRa());
+        lista.put(raString, aluno);
         listaObservable.add(aluno);
     }
 
@@ -77,8 +62,9 @@ public class Alunos {
     }
 
     public String toString() {
-        return "Aluno: " + nome + " | RA: " + ra + " | Turma: " + turma;
+        return "Aluno: " + nome + " | RA: " + ra + " | Turma: " + getTurma() + " | Professor: " + getProfessor();
     }
+
 
 
 }

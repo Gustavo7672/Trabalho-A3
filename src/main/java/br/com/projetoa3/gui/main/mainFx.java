@@ -1,4 +1,6 @@
 package br.com.projetoa3.gui.main;
+import br.com.projetoa3.bancodedados.*;
+import br.com.projetoa3.modelo.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,6 +10,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Map;
 
 public class mainFx extends Application {
     @Override
@@ -22,6 +25,34 @@ public class mainFx extends Application {
     }
 
     public static void main(String[] args) {
+        ProfessorCrud professorCrud = new ProfessorCrud();
+        professorCrud.criarTabelaProfessores();
+        Professor.setProfessorLista(professorCrud.listarProfessores());
+
+        TurmaCrud turmasCrud = new TurmaCrud();
+        turmasCrud.criarTabelaTurmas();
+        Turmas.setTurmas(turmasCrud.listarTurmas());
+        for (Map.Entry<String, Turmas> entry : Turmas.getTurmas().entrySet()) {
+            Turmas.getTurmasObservable().add(entry.getValue());
+        }
+
+        AlunosCrud alunosCrud = new AlunosCrud();
+        alunosCrud.criarTabelaAlunos();
+        Alunos.setLista(alunosCrud.listarAlunos());
+        for (Map.Entry<String, Alunos> entry2 : Alunos.getLista().entrySet()) {
+            Alunos.getListaObservable().add(entry2.getValue());
+        }
+
+        NotasCrud notasCrud = new NotasCrud();
+        notasCrud.criarTabelaNotas();
+        Notas.setNotasPorAluno(notasCrud.listarNotas());
+        for (Map.Entry<Long, Notas> entry3 : Notas.getNotasPorAluno().entrySet()) {
+            Notas.getNotasObservable().add(entry3.getValue());
+        }
+
+        PresencaCrud presencaCrud = new PresencaCrud();
+        presencaCrud.criarTabelas();
+        ListaPresenca.setPresencas(presencaCrud.listarPresencas());
         launch(args);
     }
 }

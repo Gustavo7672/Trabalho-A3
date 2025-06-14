@@ -1,18 +1,22 @@
 package br.com.projetoa3.bancodedados;
+import br.com.projetoa3.modelo.Turmas;
+
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class TurmaCrud {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/bancohaha";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "240905";
+    private final String URL = "jdbc:mysql://localhost:3306/projetoa3?serverTimezone=America/Bahia"; // substitua
+    private final String USUARIO = "root"; // substitua
+    private final String SENHA = "gu7672017";
 
     public void criarTabelaTurmas() {
         String sql = """
             CREATE TABLE IF NOT EXISTS turmas (
-                id INT AUTO_INCREMENT PRIMARY KEY,
+                id VARCHAR(100) PRIMARY KEY,
                 nomeDaTurma VARCHAR(100) NOT NULL,
-                professores_ra INT,
+                professores_ra VARCHAR(50),
                 FOREIGN KEY (professores_ra) REFERENCES professores(ra)
             );
         """;
@@ -28,13 +32,15 @@ public class TurmaCrud {
         }
     }
 
-    public void inserirTurma(String nomeDaTurma) {
-        String sql = "INSERT INTO turmas (nomeDaTurma) VALUES (?)";
+    public void inserirTurma(String id,String nomeDaTurma, String professores_ra) {
+        String sql = "INSERT INTO turmas (id, nomeDaTurma, professores_ra) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
              PreparedStatement pstmt = conn.prepareStatement(sql)) {
 
-            pstmt.setString(1, nomeDaTurma);
+            pstmt.setString(1, id);
+            pstmt.setString(2, nomeDaTurma);
+            pstmt.setString(3, professores_ra);
             pstmt.executeUpdate();
             System.out.println("Turma inserida com sucesso.");
 
@@ -43,7 +49,8 @@ public class TurmaCrud {
         }
     }
 
-    public void listarTurmas() {
+    public Map<String, Turmas> listarTurmas() {
+        Map<String, Turmas> turmas = new HashMap<>();
         String sql = "SELECT * FROM turmas";
 
         try (Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
@@ -51,14 +58,17 @@ public class TurmaCrud {
              ResultSet rs = stmt.executeQuery(sql)) {
 
             while (rs.next()) {
-                int id = rs.getInt("id");
+                String id = rs.getString("id");
                 String nome = rs.getString("nomeDaTurma");
-                System.out.println("ID: " + id + " | Nome: " + nome);
+                String professoresRa = rs.getString("professores_ra");
+                Turmas turma = new Turmas(nome, professoresRa);
+                turmas.put(id, turma);
             }
 
         } catch (SQLException e) {
             System.err.println("Erro ao listar turmas: " + e.getMessage());
         }
+        return turmas;
     }
 
     public void buscarTurmaPorId(int id) {

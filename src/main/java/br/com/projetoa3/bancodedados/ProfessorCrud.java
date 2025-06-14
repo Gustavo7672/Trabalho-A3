@@ -1,17 +1,20 @@
 package br.com.projetoa3.bancodedados;
 
+import br.com.projetoa3.modelo.Professor;
+
 import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ProfessorCrud {
-    private static final String BANCO_DADOS = "banco";
-    private static final String USUARIO = "root";
-    private static final String SENHA = "25031007";
-    private static final String URL = "jdbc:mysql://localhost:3306/" + BANCO_DADOS;
+    private static final String USUARIO = "root"; // substitua
+    private static final String SENHA = "gu7672017";
+    private static final String URL = "jdbc:mysql://localhost:3306/projetoa3?serverTimezone=America/Bahia";
 
     private static Connection conectar() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection(URL, USUARIO, SENHA);
+            return DriverManager.getConnection(URL, USUARIO,SENHA);
         } catch (ClassNotFoundException e) {
             System.err.println("Driver JDBC não encontrado.");
         } catch (SQLException e) {
@@ -61,30 +64,28 @@ public class ProfessorCrud {
         }
     }
 
-    public void listarProfessores() {
+    public Map<String, Professor> listarProfessores() {
+        Map<String, Professor> professoresMap = new HashMap<>();
         String sql = "SELECT * FROM professores";
 
         try (Connection conexao = conectar();
              Statement stmt = conexao.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
 
-            System.out.println("\n--- Lista de Professores ---");
-            boolean encontrou = false;
-
             while (rs.next()) {
-                encontrou = true;
-                System.out.println("RA: " + rs.getString("ra") +
-                        ", Nome: " + rs.getString("nome") +
-                        ", Email: " + rs.getString("email"));
-            }
 
-            if (!encontrou) {
-                System.out.println("Nenhum professor cadastrado.");
+                Professor professor = new Professor(
+                        rs.getString("nome"),
+                        rs.getString("ra"),
+                        rs.getString("email"),
+                        rs.getString("senha"));
+                professoresMap.put(rs.getString("ra"), professor);
             }
 
         } catch (SQLException e) {
             System.err.println("Erro ao listar professores: " + e.getMessage());
         }
+        return professoresMap;
     }
 
     public void buscarProfessorPorRa(String ra) {

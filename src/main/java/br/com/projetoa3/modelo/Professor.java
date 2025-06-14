@@ -14,7 +14,7 @@ public class Professor {
     private  String senha;
     private  String nome;
     private  String ra;
-    private static Map<Long, Professor> professorLista = new HashMap<>();
+    private static Map<String, Professor> professorLista = new HashMap<>();
     private static ObservableList<Professor> professorListaObservable = FXCollections.observableArrayList();
 
     public Professor(String nome, String ra, String email, String senha) {
@@ -22,6 +22,10 @@ public class Professor {
         this.ra = ra;
         this.email = email;
         this.senha = senha;
+    }
+
+    public static void setProfessorLista(Map<String, Professor> professorLista) {
+        Professor.professorLista = professorLista;
     }
 
     public static String getNomeLogado() {
@@ -40,12 +44,12 @@ public class Professor {
         Professor.raLogado = raLogado;
     }
 
-    public static Map<Long, Professor> getProfessorLista() {
+    public static Map<String, Professor> getProfessorLista() {
         return professorLista;
     }
 
     public void adicionarProfessor(Professor professor) {
-        professorLista.put(Long.parseLong(professor.getRa()), professor);
+        professorLista.put(professor.getRa(), professor);
         professorListaObservable.add(professor);
     }
 
@@ -94,20 +98,4 @@ if(email != null && email.contains("@") && email.contains(".") && email.contains
         return senha;
     }
 
-    public  void setEmail(String emailUsuario) {
-        email = emailUsuario;
-    }
-
-    public  void setSenha(String senhaUsuario) {
-        senha = senhaUsuario;
-    }
-
-    public static Professor getProfessorLogado(String nome, String ra) {
-        for (Professor professor : professorLista.values()) {
-            if (professor.getEmail().equals(nome) && professor.getSenha().equals(ra)) {
-                return professor;
-            }
-        }
-        return null;
-    }
 }

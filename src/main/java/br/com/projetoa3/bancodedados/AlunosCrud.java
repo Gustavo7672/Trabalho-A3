@@ -1,23 +1,23 @@
 package br.com.projetoa3.bancodedados;
 
-import java.sql.*;
+import br.com.projetoa3.modelo.Alunos;
 
-public class alunosCrud {
+import java.sql.*;
+import java.util.HashMap;
+import java.util.Map;
+
+public class AlunosCrud {
     // Configurações do banco de dados
-    private final String url = "jdbc:mysql://localhost:3306/meubanco"; // substitua
+    private final String url = "jdbc:mysql://localhost:3306/projetoa3?serverTimezone=America/Bahia"; // substitua
     private final String usuario = "root"; // substitua
-    private final String senha = "ijklsm6644"; // substitua
+    private final String senha = "gu7672017"; // substitua
 
     public void criarTabelaAlunos() {
         String sql = "CREATE TABLE IF NOT EXISTS alunos (" +
-                "RA INT PRIMARY KEY," +
+                "RA VARCHAR(100) PRIMARY KEY," +
                 "nome VARCHAR(100) NOT NULL," +
-                "presenca_id INT," +
-                "turma_id INT," +
-                "notas_id INT," +
-                "FOREIGN KEY (presenca_id) REFERENCES presenca(id)," +
-                "FOREIGN KEY (turma_id) REFERENCES turma(id)," +
-                "FOREIGN KEY (notas_id) REFERENCES notas(id)" +
+                "turmaId VARCHAR(100)," +
+                "professor_ra VARCHAR(50)" +
                 ") ENGINE=InnoDB;";
 
         try (Connection conn = DriverManager.getConnection(url, usuario, senha);
@@ -31,16 +31,15 @@ public class alunosCrud {
         }
     }
 
-    public void inserirAluno(int ra, String nome, Integer presencaId, Integer turmaId, Integer notasId) {
-        String sql = "INSERT INTO alunos (RA, nome, presenca_id, turma_id, notas_id) VALUES (?, ?, ?, ?, ?)";
+    public void inserirAluno(Long ra, String nome, String turmaId, String professor_ra) {
+        String sql = "INSERT INTO alunos (RA, nome, turmaId, professor_ra) VALUES (?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(url, usuario, senha);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, ra);
+            stmt.setLong(1, ra);
             stmt.setString(2, nome);
-            stmt.setObject(3, presencaId, Types.INTEGER);
-            stmt.setObject(4, turmaId, Types.INTEGER);
-            stmt.setObject(5, notasId, Types.INTEGER);
+            stmt.setString(3, turmaId);
+            stmt.setString(4, professor_ra);
 
             stmt.executeUpdate();
             System.out.println("Aluno inserido com sucesso!");
@@ -50,27 +49,30 @@ public class alunosCrud {
         }
     }
 
-    public void listarAlunos() {
+    public Map<String,Alunos>listarAlunos() {
+        Map<String, Alunos> alunosMap = new HashMap<>(); // Recebe o mapa de alunos
         String sql = "SELECT * FROM alunos";
         try (Connection conn = DriverManager.getConnection(url, usuario, senha);
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(sql)) {
-
-            System.out.println("Lista de alunos:");
             while (rs.next()) {
-                System.out.println("RA: " + rs.getInt("RA") +
-                        ", Nome: " + rs.getString("nome") +
-                        ", Presença ID: " + rs.getInt("presenca_id") +
-                        ", Turma ID: " + rs.getInt("turma_id") +
-                        ", Notas ID: " + rs.getInt("notas_id"));
+                Long ra = Long.parseLong(rs.getString("RA"));
+
+                Alunos aluno = new Alunos(
+                        rs.getString("nome"),
+                       ra,
+                        rs.getString("turmaId"),
+                        rs.getString("professor_ra"));
+                alunosMap.put(rs.getString("RA"), aluno);
             }
 
         } catch (SQLException e) {
             System.err.println("Erro ao listar alunos: " + e.getMessage());
         }
+        return alunosMap;
     }
 
-    public void buscarAlunoPorRA(int ra) {
+   /* public void buscarAlunoPorRA(int ra) {
         String sql = "SELECT * FROM alunos WHERE RA = ?";
         try (Connection conn = DriverManager.getConnection(url, usuario, senha);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -156,5 +158,5 @@ public class alunosCrud {
         } catch (SQLException e) {
             System.err.println("Erro ao excluir aluno: " + e.getMessage());
         }
-    }
+    }*/
 }

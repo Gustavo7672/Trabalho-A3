@@ -1,6 +1,12 @@
 package br.com.projetoa3.gui.controllers;
 
+import br.com.projetoa3.bancodedados.AlunosCrud;
 import br.com.projetoa3.modelo.Alunos;
+import br.com.projetoa3.modelo.Professor;
+import br.com.projetoa3.modelo.Turmas;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -8,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class TelaCadastroController implements Initializable {
@@ -23,10 +30,10 @@ public class TelaCadastroController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-        for(String turma : Alunos.getTurmasObservable()) {
-            comboBoxTurma.getItems().add(turma);
-        }
+        atualizarTurmasPorProfessor();
+        Alunos.getListaObservable().addListener((ListChangeListener<Alunos>) change2 -> {
+            atualizarTurmasPorProfessor();
+        });
     }
     @FXML
     private void confirmarCadastro(){
@@ -45,7 +52,12 @@ public class TelaCadastroController implements Initializable {
             alert.showAndWait();
             return;
         }
-        Alunos.adicionarAluno(new Alunos(cadastrarNomeId.getText().trim(), raLong, comboBoxTurma.getValue()));
+        Alunos.adicionarAluno(new Alunos(cadastrarNomeId.getText().trim(), raLong,comboBoxTurma.getValue(), Professor.getRaLogado() ));
+
+        for (Map.Entry<String, Alunos> entry3 : Alunos.getLista().entrySet()) {
+            AlunosCrud managerr = new AlunosCrud();
+            managerr.inserirAluno(entry3.getValue().getRa(), entry3.getValue().getNome(), entry3.getValue().getTurma(), entry3.getValue().getProfessor());
+        }
 
 
         alert.setHeaderText("Aluno cadastrado com sucesso!\nNome: " + cadastrarNomeId.getText() + "\nRA: " + cadastrarRAId1.getText() + "\nTurma: " + comboBoxTurma.getValue());
@@ -55,5 +67,17 @@ public class TelaCadastroController implements Initializable {
         cadastrarNomeId.clear();
         cadastrarRAId1.clear();
         alert.showAndWait();
+    }
+
+    private void atualizarTurmasPorProfessor() {
+        ObservableList<String> turmasFiltPorProfessor = FXCollections.observableArrayList();
+        for (Turmas turma: Turmas.getTurmasObservable()) {
+            if (turma.getProfessor().equals(Professor.getRaLogado())) {
+                turmasFiltPorProfessor.add(turma.getTurma());
+            }
+        }
+        for (String turma : turmasFiltPorProfessor) {
+            comboBoxTurma.getItems().add(turma);
+        }
     }
 }
