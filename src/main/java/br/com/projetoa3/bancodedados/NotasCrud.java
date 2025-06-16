@@ -133,19 +133,19 @@ public void atualizarNotas(int idNota, double novaA1, double novaA2, double nova
     }
 }
 
-public void excluirNotas(int idNota) {
-    String sql = "DELETE FROM notas WHERE id = ?";
+public void excluirNotas(int ra) {
+    String sql = "DELETE FROM notas WHERE ra = ?";
 
     try (Connection conn = DriverManager.getConnection(URL, USUARIO, SENHA);
          PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-        stmt.setInt(1, idNota);
+        stmt.setInt(1, ra);
         int afetados = stmt.executeUpdate();
 
         if (afetados > 0) {
             System.out.println("Notas excluídas com sucesso.");
         } else {
-            System.out.println("Nota com ID " + idNota + " não encontrada.");
+            System.out.println("Nota com ID " + ra + " não encontrada.");
         }
 
     } catch (SQLException e) {

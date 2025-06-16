@@ -1,5 +1,8 @@
 package br.com.projetoa3.gui.controllers;
 
+import br.com.projetoa3.bancodedados.AlunosCrud;
+import br.com.projetoa3.bancodedados.NotasCrud;
+import br.com.projetoa3.bancodedados.PresencaCrud;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
@@ -52,15 +55,22 @@ public class RemoverAlunoControllers implements Initializable {
                 return;
             }
 
-            long raLong = Long.parseLong(ra);
-            if (!Alunos.getLista().containsKey(raLong)) {
+            if (!Alunos.getLista().containsKey(ra)) {
                 alert.setContentText("Aluno não encontrado.");
                 Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
                 stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
                 alert.showAndWait();
                 return;
             }
-            Alunos.removerAluno(raLong);
+            Integer raInt = Integer.parseInt(ra);
+            AlunosCrud alunosCrud = new AlunosCrud();
+            NotasCrud notasCrud = new NotasCrud();
+            PresencaCrud presencaCrud = new PresencaCrud();
+            Alunos.removerAluno(ra);
+            alunosCrud.excluirAluno(ra);
+            notasCrud.excluirNotas(raInt);
+            presencaCrud.excluirPresenca(raInt);
+
             alert.setContentText("Aluno removido com sucesso.");
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));

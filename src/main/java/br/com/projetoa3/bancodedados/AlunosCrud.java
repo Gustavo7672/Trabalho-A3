@@ -3,6 +3,7 @@ package br.com.projetoa3.bancodedados;
 import br.com.projetoa3.modelo.Alunos;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -141,12 +142,12 @@ public class AlunosCrud {
         }
     }
 
-    public void excluirAluno(int ra) {
+    */public void excluirAluno(String ra) {
         String sql = "DELETE FROM alunos WHERE RA = ?";
         try (Connection conn = DriverManager.getConnection(url, usuario, senha);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, ra);
+            stmt.setString(1, ra);
             int rows = stmt.executeUpdate();
 
             if (rows > 0) {
@@ -158,5 +159,5 @@ public class AlunosCrud {
         } catch (SQLException e) {
             System.err.println("Erro ao excluir aluno: " + e.getMessage());
         }
-    }*/
+    }
 }

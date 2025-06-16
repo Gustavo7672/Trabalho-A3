@@ -19,12 +19,6 @@
    <children>
       <MenuBar fx:id="menuBarSuperior">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
-            <items>
-              <MenuItem mnemonicParsing="false" text="Salvar " />
-                  <MenuItem mnemonicParsing="false" text="Exportar Tabela" />
-            </items>
-          </Menu>
           <Menu mnemonicParsing="false" text="Edit">
             <items>
               <MenuItem fx:id="CadastrarAlunos" mnemonicParsing="false" onAction="#abrirTelaCadastro" text="Adicionar Alunos" />
@@ -61,7 +55,7 @@
                               <Insets bottom="40.0" top="10.0" />
                            </VBox.margin>
                         </Label>
-                        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="180.0" prefWidth="145.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2;">
+                        <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="127.0" prefWidth="143.0" style="-fx-background-color: white; -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-border-width: 2;">
                            <VBox.margin>
                               <Insets bottom="20.0" left="160.0" right="160.0" />
                            </VBox.margin>
@@ -69,11 +63,6 @@
                               <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#sairDaConta" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10;" text="Sair da Conta">
                                  <VBox.margin>
                                     <Insets left="20.0" right="20.0" top="40.0" />
-                                 </VBox.margin>
-                              </Button>
-                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10;" text="Salvar">
-                                 <VBox.margin>
-                                    <Insets bottom="40.0" left="20.0" right="20.0" top="25.0" />
                                  </VBox.margin>
                               </Button>
                            </children>
@@ -92,7 +81,7 @@
                <children>
                   <VBox maxWidth="-Infinity" minHeight="-Infinity" prefHeight="330.0" prefWidth="1296.0" style="-fx-background-color: linear-gradient(from 0% 0% to 100% 100%, #ADD8E6, #66ccff); -fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-padding: 10; -fx-border-width: 2;">
                      <children>
-                        <ListView fx:id="listaAlunosId" prefHeight="500.0" prefWidth="852.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 40; -fx-padding: 4 8;"/>
+                        <ListView fx:id="listaAlunosId" prefHeight="500.0" prefWidth="852.0" style="-fx-background-radius: 15; -fx-border-radius: 15; -fx-border-color: #002244; -fx-fixed-cell-size: 40; -fx-padding: 4 8;" />
                      </children>
                      <opaqueInsets>
                         <Insets />

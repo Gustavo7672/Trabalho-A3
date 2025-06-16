@@ -52,6 +52,15 @@ public class TelaCadastroController implements Initializable {
             alert.showAndWait();
             return;
         }
+        for (Map.Entry<String, Alunos> entry3 : Alunos.getLista().entrySet()) {
+            if( entry3.getValue().getRa().equals(raLong)&& entry3.getValue().getProfessor().equals(Professor.getRaLogado()) && entry3.getValue().getTurma().equals(comboBoxTurma.getValue()) ) {
+                alert.setContentText("RA já cadastrado. Por favor, insira um RA diferente.");
+                stage = (Stage) alert.getDialogPane().getScene().getWindow();
+                stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+                alert.showAndWait();
+                return;
+            }
+        }
         Alunos.adicionarAluno(new Alunos(cadastrarNomeId.getText().trim(), raLong,comboBoxTurma.getValue(), Professor.getRaLogado() ));
 
         for (Map.Entry<String, Alunos> entry3 : Alunos.getLista().entrySet()) {
