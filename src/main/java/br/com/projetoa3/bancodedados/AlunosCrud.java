@@ -8,14 +8,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AlunosCrud {
-    // Configurações do banco de dados
     private final String url = "jdbc:mysql://localhost:3306/projetoa3?serverTimezone=America/Bahia"; // substitua
     private final String usuario = "root"; // substitua
     private final String senha = "gu7672017"; // substitua
 
     public void criarTabelaAlunos() {
         String sql = "CREATE TABLE IF NOT EXISTS alunos (" +
-                "RA VARCHAR(100) PRIMARY KEY," +
+                "idA BIGINT AUTO_INCREMENT PRIMARY KEY," +
+                "RA VARCHAR(100)," +
                 "nome VARCHAR(100) NOT NULL," +
                 "turmaId VARCHAR(100)," +
                 "professor_ra VARCHAR(50)" +

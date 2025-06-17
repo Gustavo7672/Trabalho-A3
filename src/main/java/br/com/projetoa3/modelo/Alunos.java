@@ -42,7 +42,7 @@ public class Alunos extends Turmas {
         listaObservable.add(aluno);
     }
 
-    public static void removerAluno(Long ra) {
+    public static void removerAluno(String ra) {
         Alunos aluno = lista.remove(ra);
         if (aluno != null) {
             listaObservable.remove(aluno);
@@ -62,7 +62,7 @@ public class Alunos extends Turmas {
     }
 
     public String toString() {
-        return "Aluno: " + nome + " | RA: " + ra + " | Turma: " + getTurma() + " | Professor: " + getProfessor();
+        return "Aluno: " + nome + " | RA: " + ra + " | Turma: " + getTurma();
     }
 
 

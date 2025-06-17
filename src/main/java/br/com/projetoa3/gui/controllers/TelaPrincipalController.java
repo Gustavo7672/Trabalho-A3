@@ -131,20 +131,27 @@ public class TelaPrincipalController implements Initializable {
         listaDePresenca.refresh();
         Map<Long, BooleanProperty> presencaData = ListaPresenca.getPresencas()
                 .computeIfAbsent(data, d -> new HashMap<>());
-        Alunos.getListaObservable().forEach(aluno ->
-                presencaData.putIfAbsent(aluno.getRa(), new SimpleBooleanProperty(false))
-        );
-        PresencaCrud criador = new PresencaCrud();
-        criador.criarTabelas();
-        for(Map.Entry<Long, BooleanProperty> entry : presencaData.entrySet()) {
-            Long ra = entry.getKey();
-            BooleanProperty presente = entry.getValue();
-            criador.inserirPresenca(ra, data, presente.get());
-            }
+        Alunos.getListaObservable().forEach(aluno -> {
+            BooleanProperty prop = presencaData.computeIfAbsent(aluno.getRa(), ra -> new SimpleBooleanProperty(false));
+            prop.addListener((obs, oldVal, newVal) -> {
+                PresencaCrud crud = new PresencaCrud();
+                crud.atualizarPresenca(aluno.getRa(), data, newVal);
+            });
+        });
+
+    PresencaCrud criador = new PresencaCrud();
+        Alunos.getListaObservable().forEach(aluno -> {
+                    criador.criarTabelas();
+                    for (Map.Entry<Long, BooleanProperty> entry : presencaData.entrySet()) {
+                        Long ra = entry.getKey();
+                        BooleanProperty presente = entry.getValue();
+                        criador.inserirPresenca(ra, data, presente.get());
+                    }
+                });
         ObservableList<String> presencasFiltradas = FXCollections.observableArrayList();
         for (Alunos aluno : Alunos.getListaObservable()) {
             if (aluno.getProfessor().equals(Professor.getRaLogado())) {
-                presencasFiltradas.add(aluno.getNome() + " | RA: " + aluno.getRa());
+                presencasFiltradas.add(aluno.getNome() + " | RA: " + aluno.getRa()+ " | Turma: " + aluno.getTurma());
             }
         }
         listaDePresenca.setItems(presencasFiltradas);
@@ -159,7 +166,9 @@ public class TelaPrincipalController implements Initializable {
                     setGraphic(null);
                 } else {
                     checkBox.setText(item);
-                    Long ra = Long.parseLong(item.split("RA: ")[1].trim());
+                    String[] partes = item.split("\\|");
+                    String raStr = partes[1].replace("RA:", "").trim();
+                    Long ra = Long.parseLong(raStr);
                     checkBox.selectedProperty().unbind();
                     checkBox.selectedProperty().bindBidirectional(presencaData.get(ra));
                     setGraphic(checkBox);
@@ -228,6 +237,7 @@ public class TelaPrincipalController implements Initializable {
             }
         }
         listaAlunosId.setItems(alunosFiltrados);
+        listaDePresenca.setItems(alunosFiltrados);
     }
 
     @FXML
@@ -235,7 +245,10 @@ public class TelaPrincipalController implements Initializable {
         trocarTurmaMenu.getItems().clear();
 
         MenuItem todasTurmas = new MenuItem("Todas as turmas");
-        todasTurmas.setOnAction(event -> listaAlunosId.setItems(alunosFormatados));
+        todasTurmas.setOnAction(event -> {
+            listaAlunosId.setItems(alunosFormatados);
+            listaDePresenca.setItems(alunosFormatados);
+    });
         trocarTurmaMenu.getItems().add(todasTurmas);
 
         List<String> turmas = new ArrayList<>(Turmas.getTurmasObservable().stream()

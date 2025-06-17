@@ -39,9 +39,9 @@ public class CadastroProfessorControllers implements Initializable {
 
     }
     @FXML
-    protected void salvarDados()  {
+    protected void salvarDados() {
         ProfessorCrud crud = new ProfessorCrud();
-Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         Professor professor = new Professor(Nome.getText(), RA.getText(), Email.getText(), Senha.getText());
         if (professor.getNome().isEmpty() || professor.getRa().isEmpty() || professor.getEmail().isEmpty() || professor.getSenha().isEmpty()) {
             alert.setTitle("Cadastro de Professor");
@@ -50,7 +50,29 @@ Alert alert = new Alert(Alert.AlertType.INFORMATION);
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
             alert.showAndWait();
-        }else if (professor.validarEmail() && professor.validarSenha()) {
+        } else if (professor.getRa().length() != 10) {
+            alert.setContentText("RA inválido. Deve ter 10 dígitos.");
+            alert.setTitle("Cadastro de Professor");
+            alert.setHeaderText("Erro no cadastro");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+            alert.showAndWait();
+        } else if (Professor.getProfessorLista().containsKey(professor.getRa())) {
+            alert.setContentText("Professor já cadastrado com este RA.");
+            alert.setTitle("Cadastro de Professor");
+            alert.setHeaderText("Erro no cadastro");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+            alert.showAndWait();
+        } else if(Professor.getProfessorLista().containsKey(professor.getEmail())){
+            alert.setContentText("Professor já cadastrado com este email.");
+            alert.setTitle("Cadastro de Professor");
+            alert.setHeaderText("Erro no cadastro");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+            stage.getIcons().add(new Image(getClass().getResourceAsStream("/foto/Icone-removebg-preview.png")));
+            alert.showAndWait();
+
+    }else if (professor.validarEmail() && professor.validarSenha()) {
             professor.adicionarProfessor(professor);
             for(Map.Entry<String, Professor> entry : Professor.getProfessorLista().entrySet()) {
                 crud.inserirProfessor(entry.getKey(), entry.getValue().getNome(), entry.getValue().getEmail(), entry.getValue().getSenha());
