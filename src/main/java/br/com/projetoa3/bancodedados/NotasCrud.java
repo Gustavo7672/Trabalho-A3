@@ -15,7 +15,8 @@ public class NotasCrud {
     public void criarTabelaNotas() {
         String sql = """
             CREATE TABLE IF NOT EXISTS notas (
-                ra int PRIMARY KEY,
+                id int AUTO_INCREMENT PRIMARY KEY,
+                ra int,
                 A1 int,
                 A2 int,
                 A3 int,
@@ -68,7 +69,8 @@ public class NotasCrud {
                         rs.getInt("A2"),
                         rs.getInt("A3")
                 );
-                notasMap.put(rs.getLong("ra"), notas);
+                Long ra = rs.getLong("ra");
+                notasMap.put(ra, notas);
             }
 
         } catch (SQLException e) {
